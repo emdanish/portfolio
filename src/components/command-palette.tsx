@@ -54,15 +54,15 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
       onOpenChange={onOpenChange}
       label="Command palette"
       overlayClassName="fixed inset-0 z-50 bg-ink/25 dark:bg-black/60"
-      contentClassName="fixed top-[18%] left-1/2 z-50 w-[min(92vw,34rem)] -translate-x-1/2 border border-line bg-paper shadow-lg"
+      contentClassName="fixed top-[18%] left-1/2 z-50 w-[min(92vw,34rem)] max-w-[calc(100vw-env(safe-area-inset-left)-env(safe-area-inset-right)-2rem)] -translate-x-1/2 border border-line bg-paper shadow-lg"
     >
       <Command.Input
         placeholder="Type a command or search…"
         className="w-full border-b border-line bg-transparent px-5 py-4 font-mono text-sm text-ink outline-none placeholder:text-subtle"
       />
       <Command.List className="max-h-80 overflow-y-auto overscroll-contain p-2">
-        <Command.Empty className="px-3 py-8 text-center font-mono text-xs text-subtle uppercase">
-          Nothing matches.
+        <Command.Empty className="px-3 py-8 text-center font-mono text-xs text-subtle">
+          NOTHING MATCHES. Try &ldquo;work&rdquo;, &ldquo;theme&rdquo;, or &ldquo;cv&rdquo;.
         </Command.Empty>
 
         <Command.Group heading="Go to" className={groupClass}>
@@ -88,7 +88,15 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
         <Command.Group heading="Actions" className={groupClass}>
           <Command.Item
             className={itemClass}
-            onSelect={() => run(() => navigator.clipboard.writeText(identity.email).catch(() => {}))}
+            onSelect={() =>
+              run(() =>
+                // If the clipboard write is denied, fall back to the mail
+                // client so the action never silently fails.
+                navigator.clipboard.writeText(identity.email).catch(() => {
+                  window.location.href = `mailto:${identity.email}`;
+                }),
+              )
+            }
           >
             <Copy aria-hidden="true" />
             Copy email address

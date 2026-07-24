@@ -133,16 +133,22 @@ body {
 }
 
 /* Barely-perceptible paper grain: a static fixed layer behind all content.
-   Hidden in dark mode, where it muddies the navy. */
+   A solid color revealed through a pre-rasterized alpha-noise PNG mask
+   (scripts/generate-assets.mjs): masks are never LCP candidates and a PNG
+   tile costs no filter rasterization. Hidden in dark mode, where it muddies
+   the navy. */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='128'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='128' height='128' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  opacity: 0.04;
+  background-color: #374049;
+  -webkit-mask-image: url("/noise.png");
+  -webkit-mask-repeat: repeat;
+  mask-image: url("/noise.png");
+  mask-repeat: repeat;
+  opacity: 0.05;
 }
 .dark body::before {
   display: none;
@@ -157,6 +163,75 @@ body::before {
 :focus-visible {
   outline: 2px solid var(--ring);
   outline-offset: 2px;
+}
+
+/* Hero entrance (signature motion moment #1), in pure CSS so the headline
+   paints without waiting for hydration. The hidden state lives inside the
+   keyframes: with animation disabled (reduced motion, or unsupported), the
+   base styles are simply visible. */
+@keyframes hero-rise {
+  /* Opacity floor of 0.01 (not 0): the element is genuinely painted from the
+     first frame, so the browser records the hero text, not a nav button, as
+     the largest contentful paint. Visually indistinguishable from 0. */
+  from {
+    opacity: 0.01;
+    transform: translateY(0.5em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes hero-mask-rise {
+  from {
+    transform: translateY(110%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes hero-mark {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.hero-rise {
+  animation: hero-rise 0.7s ease-out both;
+  animation-delay: calc(var(--rise-order) * 90ms);
+}
+/* Transform-only variant for the hero statement: fully opaque from the first
+   frame, so the page's largest text block registers as LCP at first paint
+   instead of at the end of its fade. */
+@keyframes hero-rise-move {
+  from {
+    transform: translateY(0.5em);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.hero-rise-move {
+  animation: hero-rise-move 0.7s ease-out both;
+  animation-delay: calc(var(--rise-order) * 90ms);
+}
+.hero-mask-rise {
+  animation: hero-mask-rise 0.7s ease-out both;
+  animation-delay: calc(var(--rise-order) * 90ms);
+}
+.hero-mark {
+  transform-origin: left;
+  animation: hero-mark 0.5s ease-out 0.9s both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-rise,
+  .hero-rise-move,
+  .hero-mask-rise,
+  .hero-mark {
+    animation: none;
+  }
 }
 
 /* Hover lift for cards: transform transitions on the element, while the

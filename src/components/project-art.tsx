@@ -8,7 +8,6 @@ type ProjectArtProps = {
   image: Project["image"];
   /** next/image responsive hint, set by the surface this art sits in. */
   sizes: string;
-  priority?: boolean;
 };
 
 /**
@@ -16,7 +15,7 @@ type ProjectArtProps = {
  * a gentle 1.02 scale when the parent `group` card is hovered. Both effects
  * are transform/opacity only and collapse under prefers-reduced-motion.
  */
-export function ProjectArt({ image, sizes, priority = false }: ProjectArtProps) {
+export function ProjectArt({ image, sizes }: ProjectArtProps) {
   const reduceMotion = useReducedMotion();
 
   return (
@@ -33,8 +32,7 @@ export function ProjectArt({ image, sizes, priority = false }: ProjectArtProps) 
           alt={image.alt}
           fill
           sizes={sizes}
-          priority={priority}
-          className="object-cover transition-transform duration-300 ease-out group-hover:scale-[1.02] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+          className="object-cover transition-transform duration-200 ease-out group-hover:scale-[1.02] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
         />
       </motion.div>
     </div>

@@ -117,6 +117,21 @@ async function generateOg(fraunces, mono) {
   console.log("og: public/og.png (1200x630)");
 }
 
+/** 96px tile of alpha-channel gaussian noise, used as the paper-grain CSS mask. */
+async function generateNoiseTile() {
+  const raw = Buffer.alloc(96 * 96);
+  for (let i = 0; i < raw.length; i++) {
+    raw[i] = Math.max(0, Math.min(255, Math.round(128 + (Math.random() * 2 - 1) * 90)));
+  }
+  const alpha = await sharp(raw, { raw: { width: 96, height: 96, channels: 1 } }).png().toBuffer();
+  const tile = await sharp({ create: { width: 96, height: 96, channels: 3, background: "#000" } })
+    .joinChannel(alpha)
+    .png({ compressionLevel: 9 })
+    .toBuffer();
+  await writeFile(path.join(PUBLIC, "noise.png"), tile);
+  console.log("noise.png: 96x96 alpha-noise mask tile");
+}
+
 async function generatePortraits() {
   const src = path.join(ROOT, "Picture.jpg");
   // Statically imported by components (not URL-served), so they live in
@@ -156,4 +171,5 @@ const mono = await loadFont(FONTS.mono);
 await generatePortraits();
 await generateIcons(fraunces);
 await generateOg(fraunces, mono);
+await generateNoiseTile();
 console.log("done");

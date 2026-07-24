@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { Button } from "@/components/ui/button";
-import { CommandPalette } from "@/components/command-palette";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { identity, ui } from "@/content";
 import { cn } from "@/lib/utils";
@@ -16,6 +16,13 @@ import avatar from "@/images/avatar.jpg";
 const sectionIds = ["intro", ...ui.nav.map((item) => item.href.slice(1))];
 
 const emptySubscribe = () => () => {};
+
+// The palette (and cmdk) stays out of the initial bundle; the chunk loads on
+// the first Ctrl/Cmd+K or chip click.
+const CommandPalette = dynamic(
+  () => import("@/components/command-palette").then((m) => m.CommandPalette),
+  { ssr: false },
+);
 
 /**
  * Track which page section is in view and mirror it into the URL hash.
@@ -63,6 +70,12 @@ export function SiteNav() {
   const reduceMotion = useReducedMotion();
   const [menuOpen, setMenuOpen] = useState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
+  const [paletteRequested, setPaletteRequested] = useState(false);
+
+  function openPalette() {
+    setPaletteRequested(true);
+    setPaletteOpen(true);
+  }
   const menuRef = useRef<HTMLElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
 
@@ -76,6 +89,7 @@ export function SiteNav() {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key.toLowerCase() === "k" && (event.metaKey || event.ctrlKey)) {
         event.preventDefault();
+        setPaletteRequested(true);
         setPaletteOpen((open) => !open);
       }
     }
@@ -100,12 +114,7 @@ export function SiteNav() {
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-paper pr-[max(--spacing(5),env(safe-area-inset-right))] pl-[max(--spacing(5),env(safe-area-inset-left))]">
       <nav aria-label="Main" className="mx-auto flex h-16 max-w-6xl items-center justify-between">
-        <a
-          href="#top"
-          className="flex items-center gap-3"
-          aria-label={`${identity.name}, back to top`}
-          onClick={() => setMenuOpen(false)}
-        >
+        <a href="#top" className="flex items-center gap-3" onClick={() => setMenuOpen(false)}>
           <Image
             src={avatar}
             alt=""
@@ -115,6 +124,7 @@ export function SiteNav() {
             priority
           />
           <span className="font-display text-lg font-semibold text-ink">{identity.monogram}</span>
+          <span className="sr-only">{identity.name}, back to top</span>
         </a>
 
         <ul role="list" className="hidden items-center gap-7 md:flex">
@@ -126,20 +136,22 @@ export function SiteNav() {
                   href={`/${item.href}`}
                   aria-current={isActive ? "true" : undefined}
                   className={cn(
-                    "relative font-mono text-xs uppercase transition-colors",
+                    // Vertical padding grows the hit target past 24px without
+                    // changing the visual weight of the bar.
+                    "relative inline-block py-2.5 font-mono text-xs uppercase transition-colors",
                     isActive ? "text-ink" : "text-subtle hover:text-ink",
                   )}
                 >
                   {item.label}
                   {isActive &&
                     (reduceMotion ? (
-                      <span aria-hidden="true" className="absolute inset-x-0 -bottom-1.5 h-0.5 bg-amber" />
+                      <span aria-hidden="true" className="absolute inset-x-0 bottom-1 h-0.5 bg-amber" />
                     ) : (
                       // Shared layoutId slides the amber bar between links.
                       <motion.span
                         layoutId="nav-indicator"
                         aria-hidden="true"
-                        className="absolute inset-x-0 -bottom-1.5 h-0.5 bg-amber"
+                        className="absolute inset-x-0 bottom-1 h-0.5 bg-amber"
                         transition={{ type: "spring", stiffness: 400, damping: 34 }}
                       />
                     ))}
@@ -152,11 +164,10 @@ export function SiteNav() {
         <div className="flex items-center gap-2">
           <button
             type="button"
-            onClick={() => setPaletteOpen(true)}
-            aria-label="Open command palette"
+            onClick={openPalette}
             className="hidden cursor-pointer items-center gap-1 border border-line px-2 py-1 font-mono text-xs text-subtle transition-colors hover:border-ink/40 hover:text-ink md:inline-flex"
           >
-            {isMac ? "⌘" : "Ctrl"} K
+            {isMac ? "⌘" : "Ctrl"} K<span className="sr-only">, open command palette</span>
           </button>
           <ThemeToggle />
           <Button asChild size="sm">
@@ -203,7 +214,7 @@ export function SiteNav() {
         </ul>
       </nav>
 
-      <CommandPalette open={paletteOpen} onOpenChange={setPaletteOpen} />
+      {paletteRequested && <CommandPalette open={paletteOpen} onOpenChange={setPaletteOpen} />}
     </header>
   );
 }
