@@ -79,6 +79,12 @@ export default function RootLayout({
     >
       <body className="min-h-dvh bg-background font-sans text-foreground antialiased">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
+          <a
+            href="#main"
+            className="sr-only z-50 bg-primary px-4 py-2 font-mono text-sm text-primary-foreground focus:not-sr-only focus:fixed focus:top-2 focus:left-2"
+          >
+            Skip to content
+          </a>
           {children}
         </ThemeProvider>
       </body>

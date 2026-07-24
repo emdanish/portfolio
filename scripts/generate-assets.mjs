@@ -9,7 +9,7 @@
  *
  * Run: node scripts/generate-assets.mjs
  */
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import sharp from "sharp";
@@ -119,6 +119,10 @@ async function generateOg(fraunces, mono) {
 
 async function generatePortraits() {
   const src = path.join(ROOT, "Picture.jpg");
+  // Statically imported by components (not URL-served), so they live in
+  // src/images where next/image derives dimensions and blur placeholders.
+  const outDir = path.join(ROOT, "src", "images");
+  await mkdir(outDir, { recursive: true });
   const meta = await sharp(src).metadata();
   const { width: W, height: H } = meta;
   console.log(`source photo: ${W}x${H}`);
@@ -131,7 +135,7 @@ async function generatePortraits() {
   await sharp(src)
     .extract({ left: 0, top: aboutTop, width: aboutW, height: aboutH })
     .jpeg({ quality: 88, mozjpeg: true })
-    .toFile(path.join(PUBLIC, "images", "portrait-about.jpg"));
+    .toFile(path.join(outDir, "portrait-about.jpg"));
   console.log(`portrait-about.jpg: ${aboutW}x${aboutH} (4:5)`);
 
   // Tight square crop around the face for the nav/footer avatar.
@@ -142,11 +146,11 @@ async function generatePortraits() {
     .extract({ left, top, width: side, height: side })
     .resize(512, 512)
     .jpeg({ quality: 88, mozjpeg: true })
-    .toFile(path.join(PUBLIC, "images", "avatar.jpg"));
+    .toFile(path.join(outDir, "avatar.jpg"));
   console.log("avatar.jpg: 512x512");
 }
 
-await mkdir(path.join(PUBLIC, "images"), { recursive: true });
+await mkdir(PUBLIC, { recursive: true });
 const fraunces = await loadFont(FONTS.fraunces);
 const mono = await loadFont(FONTS.mono);
 await generatePortraits();
