@@ -14,7 +14,7 @@ const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: identity.name,
-  jobTitle: "Full-Stack Developer",
+  jobTitle: identity.role,
   email: `mailto:${identity.email}`,
   url: SITE_URL,
   sameAs: [identity.github, identity.linkedin],

@@ -1,6 +1,6 @@
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
-import { testimonials } from "@/content";
+import { sections, testimonials } from "@/content";
 
 /**
  * Renders nothing while the testimonials list in src/content.ts is empty —
@@ -13,8 +13,8 @@ export function Testimonials() {
   return (
     <section id="testimonials" className="scroll-mt-24 px-5 py-24 sm:py-32">
       <div className="mx-auto max-w-6xl">
-        <SectionHeading eyebrow="Testimonials" title="What people say." />
-        <ul className="mt-16 grid list-none gap-6 md:grid-cols-2">
+        <SectionHeading eyebrow={sections.testimonials.eyebrow} title={sections.testimonials.title} />
+        <ul role="list" className="mt-16 grid list-none gap-6 md:grid-cols-2">
           {testimonials.map((t, i) => (
             <li key={t.name}>
               <Reveal delay={i * 0.08} className="h-full">

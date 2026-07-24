@@ -9,11 +9,18 @@ import { identity, ui } from "@/content";
 import { cn } from "@/lib/utils";
 import avatar from "@/images/avatar.jpg";
 
-const sectionIds = ui.nav.map((item) => item.href.slice(1));
+// "intro" is the hero: while it holds the eyeline band no section is active
+// and the hash is cleared.
+const sectionIds = ["intro", ...ui.nav.map((item) => item.href.slice(1))];
 
-/** Track which page section is in view and mirror it into the URL hash. */
+/**
+ * Track which page section is in view and mirror it into the URL hash.
+ * `active` stays undefined until the observer reports for the first time, so
+ * deep links (and pages without these sections, like /recruitimate) never
+ * have their hash stripped on mount.
+ */
 function useActiveSection() {
-  const [active, setActive] = useState<string | null>(null);
+  const [active, setActive] = useState<string | null | undefined>(undefined);
 
   useEffect(() => {
     const sections = sectionIds
@@ -23,7 +30,7 @@ function useActiveSection() {
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (entry.isIntersecting) setActive(entry.target.id);
+          if (entry.isIntersecting) setActive(entry.target.id === "intro" ? null : entry.target.id);
         }
       },
       // A slim horizontal band around the reader's eyeline decides the
@@ -36,10 +43,11 @@ function useActiveSection() {
   }, []);
 
   useEffect(() => {
-    if (active === null) return;
-    const hash = `#${active}`;
-    if (window.location.hash !== hash) {
-      history.replaceState(null, "", hash);
+    if (active === undefined) return;
+    const url = `${window.location.pathname}${window.location.search}${active ? `#${active}` : ""}`;
+    const current = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+    if (current !== url) {
+      history.replaceState(null, "", url);
     }
   }, [active]);
 
@@ -50,18 +58,24 @@ export function SiteNav() {
   const active = useActiveSection();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (!menuOpen) return;
     function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setMenuOpen(false);
+      if (event.key !== "Escape") return;
+      setMenuOpen(false);
+      // Keyboard users inside the panel would otherwise drop focus to <body>.
+      if (menuRef.current?.contains(document.activeElement)) {
+        toggleRef.current?.focus();
+      }
     }
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [menuOpen]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-paper/95 px-[max(--spacing(5),env(safe-area-inset-left))] backdrop-blur-sm">
+    <header className="sticky top-0 z-40 border-b border-line bg-paper pr-[max(--spacing(5),env(safe-area-inset-right))] pl-[max(--spacing(5),env(safe-area-inset-left))]">
       <nav aria-label="Main" className="mx-auto flex h-16 max-w-6xl items-center justify-between">
         <a
           href="#top"
@@ -80,7 +94,7 @@ export function SiteNav() {
           <span className="font-display text-lg font-semibold text-ink">{identity.monogram}</span>
         </a>
 
-        <ul className="hidden items-center gap-7 md:flex">
+        <ul role="list" className="hidden items-center gap-7 md:flex">
           {ui.nav.map((item) => (
             <li key={item.href}>
               <a
@@ -88,7 +102,9 @@ export function SiteNav() {
                 aria-current={active === item.href.slice(1) ? "true" : undefined}
                 className={cn(
                   "link-underline font-mono text-xs uppercase transition-colors",
-                  active === item.href.slice(1) ? "text-ink after:scale-x-100 after:bg-amber" : "text-subtle hover:text-ink",
+                  active === item.href.slice(1)
+                    ? "text-ink after:scale-x-100 after:bg-amber"
+                    : "text-subtle hover:text-ink",
                 )}
               >
                 {item.label}
@@ -103,6 +119,7 @@ export function SiteNav() {
             <a href={`mailto:${identity.email}`}>{ui.cta.primary}</a>
           </Button>
           <Button
+            ref={toggleRef}
             variant="ghost"
             size="icon"
             className="md:hidden"
@@ -123,7 +140,7 @@ export function SiteNav() {
         aria-label="Sections"
         className={cn("border-t border-line pb-3 md:hidden", menuOpen ? "block" : "hidden")}
       >
-        <ul className="mx-auto max-w-6xl">
+        <ul role="list" className="mx-auto max-w-6xl">
           {ui.nav.map((item) => (
             <li key={item.href} className="border-b border-line last:border-b-0">
               <a

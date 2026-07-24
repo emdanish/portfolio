@@ -17,6 +17,8 @@ export const identity = {
     "I build AI products end to end,",
     "and I care about what they refuse to do.",
   ],
+  /** Substring of the second statement line that carries the amber marker. */
+  heroHighlight: "refuse to do.",
   location: "Pakistan (open to remote worldwide)",
   availability: "Open to full-time roles and freelance projects",
   email: "muhammadd03@gmail.com",
@@ -33,15 +35,14 @@ export const identity = {
   },
 } as const;
 
-/**
- * Metrics approved for publishing. facts.md: use ONLY these numbers, with
- * this soft wording ("roughly", "approximately").
+/*
+ * Metrics approved for publishing (facts.md: use ONLY these numbers, with the
+ * soft wording shown there). Where each one ships:
+ *   - ~50% shortlisting  -> flagship.outcome (work section + case study)
+ *   - ~25% page loads    -> experience[1].summary and about[2]
+ *   - ~5 hours/week      -> approved but currently unused (no section calls
+ *                           for it; do not invent a home for it)
  */
-export const approvedMetrics = {
-  shortlisting: "roughly 50% less manual shortlisting effort in internal trials",
-  pageLoad: "key page load times reduced by approximately 25% at RemoteFlow",
-  automation: "automation workflows save the team roughly 5 hours per week",
-} as const;
 
 export type ProjectLink = { label: string; href: string };
 
@@ -72,7 +73,11 @@ export const flagship = {
     "Next.js and TypeScript frontend; FastAPI backend on multi-tenant PostgreSQL; real-time interviews over LiveKit (WebRTC) with AssemblyAI streaming transcription; LLM scoring through the Claude and Gemini APIs using tool use and structured rubrics; retrieve-then-rerank resume screening on pgvector.",
   principle:
     "Candidate scoring is grounded strictly in interview transcripts, with no facial or vocal affect inference, aligned with the EU AI Act.",
-  outcome: "Roughly 50% less manual shortlisting effort in internal trials.",
+  /** Approved metric, split for display: big figure + soft-worded caption. */
+  outcome: {
+    figure: "~50%",
+    detail: "less manual shortlisting effort in internal trials",
+  },
   stack: [
     "Next.js",
     "TypeScript",
@@ -107,6 +112,10 @@ export const flagship = {
       "Scoring is grounded strictly in transcript content and excludes facial and vocal affect inference, keeping outputs consistent, explainable, and aligned with emerging AI hiring regulation such as the EU AI Act.",
     platform:
       "A Next.js and TypeScript frontend and a FastAPI backend on a multi-tenant PostgreSQL architecture, with features owned end to end.",
+    /** Connective framing for the case study; the claims trace to the CV's
+     * "consistent, explainable" language and the linked essay. */
+    reflection:
+      "That refusal is a product decision, not a disclaimer — it is what makes the scores explainable to the hiring teams who act on them. I wrote about the reasoning in",
   },
 } as const;
 
@@ -262,3 +271,24 @@ export const ui = {
   },
   builtWith: "Built with Next.js, Tailwind, and Motion",
 } as const;
+
+/** Section mastheads and editorial framing copy (UI voice, not facts). */
+export const sections = {
+  work: { eyebrow: "Selected Work", title: "Recruitimate, and three more." },
+  writing: {
+    eyebrow: "Writing",
+    title: "Notes from the build.",
+    lede: "On the decisions behind the products — starting with the one we refused to make.",
+  },
+  experience: { eyebrow: "Experience", title: "Where I've worked." },
+  about: { eyebrow: "About", title: "The person behind the work." },
+  testimonials: { eyebrow: "Testimonials", title: "What people say." },
+  contact: {
+    heading: "Tell me what you're building.",
+    lede: "The fastest way to reach me is email — I read everything.",
+  },
+} as const;
+
+/** Search/social description used by metadata across the site. */
+export const seoDescription =
+  "Muhammad Danish is a full-stack developer building AI-powered applications end to end — Next.js, TypeScript, FastAPI, PostgreSQL, and the Claude and Gemini APIs. Open to full-time roles and freelance projects.";

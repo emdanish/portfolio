@@ -2,9 +2,10 @@
 
 import { useRef } from "react";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { Button } from "@/components/ui/button";
+import { ExternalLink } from "@/components/external-link";
+import { OutcomeStat } from "@/components/outcome-stat";
 import { ProjectArt } from "@/components/project-art";
 import { StackTags } from "@/components/stack-tags";
 import { flagship } from "@/content";
@@ -27,16 +28,17 @@ export function FlagshipSpotlight() {
   return (
     <article className="grid gap-10 lg:grid-cols-12 lg:gap-14">
       <div className="lg:col-span-7">
-        <p className="flex items-center gap-2.5 font-mono text-xs text-subtle uppercase">
-          <span aria-hidden="true" className="size-2 bg-amber" />
-          Flagship case study
-        </p>
-        <h3 className="mt-5 font-display text-display text-ink">
+        <p className="font-mono text-xs text-subtle uppercase">Flagship case study</p>
+        <h3 className="mt-5 font-display text-display text-balance text-ink">
           <Link href={flagship.caseStudyPath} className="transition-colors hover:text-subtle">
             {flagship.title}
           </Link>
         </h3>
         <p className="mt-4 max-w-2xl text-lg text-pretty">{flagship.oneLiner}</p>
+
+        {/* On small screens the outcome leads — recruiters see the proof
+            point right under the one-liner instead of two screens down. */}
+        <OutcomeStat className="mt-8 lg:hidden" />
 
         <dl className="mt-10 space-y-8">
           <div>
@@ -74,12 +76,7 @@ export function FlagshipSpotlight() {
           )}
         </div>
 
-        <div>
-          <p className="font-display text-hero font-semibold text-ink tabular-nums">~50%</p>
-          <p className="mt-1 max-w-xs text-pretty text-subtle">
-            less manual shortlisting effort in internal trials
-          </p>
-        </div>
+        <OutcomeStat className="hidden lg:block" />
 
         <StackTags items={flagship.stack} />
 
@@ -88,16 +85,9 @@ export function FlagshipSpotlight() {
             <Link href={flagship.caseStudyPath}>Read the case study</Link>
           </Button>
           {flagship.links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="link-underline inline-flex items-center gap-1 font-mono text-xs text-subtle uppercase transition-colors hover:text-ink"
-            >
+            <ExternalLink key={link.href} href={link.href}>
               {link.label}
-              <ArrowUpRight aria-hidden="true" className="size-3.5" />
-            </a>
+            </ExternalLink>
           ))}
         </div>
       </div>

@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { cn } from "@/lib/utils";
 
 /**
  * Quiet mono list of technologies, separated by interpuncts — facts.md asks
@@ -6,7 +7,7 @@ import { Fragment } from "react";
  */
 export function StackTags({ items, className }: { items: readonly string[]; className?: string }) {
   return (
-    <p className={className ?? "font-mono text-xs text-subtle"}>
+    <p className={cn("font-mono text-xs text-subtle", className)}>
       {items.map((item, i) => (
         <Fragment key={item}>
           {i > 0 && <span aria-hidden="true"> · </span>}

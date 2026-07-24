@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, JetBrains_Mono, Schibsted_Grotesk } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
-import { identity } from "@/content";
+import { identity, seoDescription } from "@/content";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
@@ -24,35 +24,29 @@ const jetbrains = JetBrains_Mono({
   display: "swap",
 });
 
-const description =
-  "Muhammad Danish is a full-stack developer building AI-powered applications end to end — Next.js, TypeScript, FastAPI, PostgreSQL, and the Claude and Gemini APIs. Open to full-time roles and freelance projects.";
+const siteTitle = `${identity.name} — ${identity.role}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${identity.name} — Full-Stack Developer, AI-Powered Applications`,
+    default: siteTitle,
     template: `%s — ${identity.name}`,
   },
-  description,
+  description: seoDescription,
   openGraph: {
     type: "website",
-    url: "/",
+    url: `${SITE_URL}/`,
     siteName: identity.name,
-    title: `${identity.name} — Full-Stack Developer, AI-Powered Applications`,
-    description,
+    title: siteTitle,
+    description: seoDescription,
     images: [{ url: "/og.png", width: 1200, height: 630, alt: `${identity.name} — portfolio` }],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: `${identity.name} — Full-Stack Developer, AI-Powered Applications`,
-    description,
-    images: ["/og.png"],
-  },
+  // Card-only: each page's twitter title/description/image autofill from its
+  // own resolved Open Graph, so /recruitimate doesn't inherit homepage copy.
+  twitter: { card: "summary_large_image" },
   icons: {
-    icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/favicon.ico", sizes: "any" },
-    ],
+    // favicon.ico is injected automatically from src/app/favicon.ico.
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
     apple: "/apple-touch-icon.png",
   },
   manifest: "/site.webmanifest",
@@ -60,10 +54,10 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#faf8f5" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a121d" },
-  ],
+  // The site forces a light default (next-themes, enableSystem=false), so the
+  // chrome color must not follow the OS scheme; the toggle updates this meta
+  // tag client-side (see theme-toggle.tsx).
+  themeColor: "#faf8f5",
 };
 
 export default function RootLayout({
@@ -81,7 +75,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
           <a
             href="#main"
-            className="sr-only z-50 bg-primary px-4 py-2 font-mono text-sm text-primary-foreground focus:not-sr-only focus:fixed focus:top-2 focus:left-2"
+            className="sr-only z-50 bg-primary px-4 py-2 font-mono text-sm text-primary-foreground focus:not-sr-only focus:fixed focus:top-[max(--spacing(2),env(safe-area-inset-top))] focus:left-[max(--spacing(2),env(safe-area-inset-left))]"
           >
             Skip to content
           </a>

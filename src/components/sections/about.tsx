@@ -2,19 +2,19 @@ import Image from "next/image";
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
 import { StackTags } from "@/components/stack-tags";
-import { about, identity, skillGroups } from "@/content";
+import { about, identity, sections, skillGroups } from "@/content";
 import portrait from "@/images/portrait-about.jpg";
 
 export function About() {
   return (
     <section id="about" className="scroll-mt-24 px-5 py-24 sm:py-32">
       <div className="mx-auto max-w-6xl">
-        <SectionHeading eyebrow="About" title="The person behind the work." />
+        <SectionHeading eyebrow={sections.about.eyebrow} title={sections.about.title} />
         <div className="mt-16 grid gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-5">
             {/* Editorial art direction: 4:5 crop, thin ink border, offset amber frame. */}
             <div className="relative mx-auto max-w-sm lg:mx-0">
-              <div aria-hidden="true" className="absolute -right-3 -bottom-3 h-full w-full bg-amber sm:-right-4 sm:-bottom-4" />
+              <div aria-hidden="true" className="absolute -right-3 -bottom-3 size-full bg-amber sm:-right-4 sm:-bottom-4" />
               <Image
                 src={portrait}
                 alt={`${identity.name}, standing outdoors with arms crossed in front of autumn foliage.`}

@@ -2,24 +2,20 @@ import { ArrowDownToLine } from "lucide-react";
 import { GitHubIcon, LinkedInIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { CopyEmailButton } from "@/components/copy-email-button";
+import { Availability } from "@/components/availability";
 import { Reveal } from "@/components/reveal";
-import { identity } from "@/content";
+import { identity, sections } from "@/content";
 
 export function Contact() {
   return (
     <section id="contact" className="scroll-mt-24 px-5 py-24 sm:py-32">
       <div className="mx-auto max-w-6xl border-t border-line pt-20">
         <Reveal>
-          <p className="flex items-center gap-2.5 font-mono text-xs text-subtle uppercase">
-            <span aria-hidden="true" className="size-2 bg-amber" />
-            {identity.availability}
-          </p>
-          <h2 className="mt-6 max-w-3xl font-display text-hero font-semibold text-balance text-ink">
-            Let&rsquo;s build something.
+          <Availability />
+          <h2 className="mt-6 max-w-3xl font-display text-display font-semibold text-balance text-ink">
+            {sections.contact.heading}
           </h2>
-          <p className="mt-6 max-w-xl text-lg text-pretty">
-            The fastest way to reach me is email — I read everything.
-          </p>
+          <p className="mt-6 max-w-xl text-lg text-pretty">{sections.contact.lede}</p>
         </Reveal>
 
         <Reveal delay={0.1}>

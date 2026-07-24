@@ -7,7 +7,7 @@ export function SiteFooter() {
         <p className="flex items-center gap-3">
           <span
             aria-hidden="true"
-            className="flex size-8 items-center justify-center bg-amber font-display text-sm font-semibold text-[#16324a]"
+            className="flex size-8 items-center justify-center bg-amber font-display text-sm font-semibold text-ink-on-amber"
           >
             {identity.monogram}
           </span>

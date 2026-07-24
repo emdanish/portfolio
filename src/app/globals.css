@@ -25,6 +25,9 @@
   --muted-text: #57646f;
   --line: #e6e0d4;
   --amber: #f6c453;
+  /* Text on full-strength amber is always this navy, in both themes —
+     deliberately NOT var(--ink), which flips light in dark mode. */
+  --ink-on-amber: #16324a;
 
   --background: var(--paper);
   --foreground: var(--body-text);
@@ -73,6 +76,7 @@
   --color-subtle: var(--muted-text);
   --color-line: var(--line);
   --color-amber: var(--amber);
+  --color-ink-on-amber: var(--ink-on-amber);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -130,13 +134,45 @@ body {
 
 ::selection {
   background: var(--amber);
-  color: #16324a;
+  color: var(--ink-on-amber);
 }
 
 /* Visible keyboard focus everywhere; components with ring utilities win. */
 :focus-visible {
   outline: 2px solid var(--ring);
   outline-offset: 2px;
+}
+
+/* Hover lift for cards: transform transitions on the element, while the
+   shadow is pre-painted on a pseudo-element and cross-faded via opacity —
+   no box-shadow interpolation (paint) on hover. */
+.card-lift {
+  position: relative;
+  transition: transform 200ms ease-out;
+}
+.card-lift::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  transition: opacity 200ms ease-out;
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+}
+.card-lift:hover::after {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-lift,
+  .card-lift::after {
+    transition: none;
+  }
+  .card-lift:hover {
+    transform: none;
+  }
 }
 
 /* Animated editorial link underline: compositor-only (scaleX transform). */

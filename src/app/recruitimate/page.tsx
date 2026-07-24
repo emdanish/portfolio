@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
+import { ExternalLink } from "@/components/external-link";
+import { EyebrowRule } from "@/components/eyebrow-rule";
+import { OutcomeStat } from "@/components/outcome-stat";
 import { Reveal } from "@/components/reveal";
 import { StackTags } from "@/components/stack-tags";
-import { flagship, writing } from "@/content";
+import { flagship, identity, writing } from "@/content";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Recruitimate — Case Study",
@@ -13,22 +17,13 @@ export const metadata: Metadata = {
   alternates: { canonical: "/recruitimate" },
   openGraph: {
     type: "article",
-    url: "/recruitimate",
+    url: `${SITE_URL}/recruitimate`,
+    siteName: identity.name,
     title: "Recruitimate — Case Study",
     description: flagship.oneLiner,
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Muhammad Danish — portfolio" }],
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: `${identity.name} — portfolio` }],
   },
 };
-
-/** Mono label + hairline rule that opens each chapter of the study. */
-function ChapterLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="flex items-baseline gap-4">
-      <h2 className="shrink-0 font-mono text-sm text-subtle uppercase">{children}</h2>
-      <span aria-hidden="true" className="h-px w-full translate-y-[-0.2em] bg-line" />
-    </div>
-  );
-}
 
 const buildChapters = [
   { label: "The platform", body: flagship.caseStudy.platform },
@@ -53,11 +48,8 @@ export default function RecruitimateCaseStudy() {
             </Link>
 
             <header className="mt-12">
-              <p className="flex items-center gap-2.5 font-mono text-xs text-subtle uppercase">
-                <span aria-hidden="true" className="size-2 bg-amber" />
-                Case study
-              </p>
-              <h1 className="mt-6 font-display text-hero font-semibold text-ink">
+              <p className="font-mono text-xs text-subtle uppercase">Case study</p>
+              <h1 className="mt-6 font-display text-hero font-semibold text-balance text-ink">
                 {flagship.title}
               </h1>
               <p className="mt-6 text-lg text-pretty">{flagship.oneLiner}</p>
@@ -70,16 +62,13 @@ export default function RecruitimateCaseStudy() {
                   <dt className="font-mono text-xs text-subtle uppercase">Live</dt>
                   <dd className="mt-1.5">
                     {flagship.links.map((link) => (
-                      <a
+                      <ExternalLink
                         key={link.href}
                         href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="link-underline inline-flex items-center gap-1 text-sm text-ink"
+                        className="text-sm text-ink normal-case"
                       >
                         {link.label}
-                        <ArrowUpRight aria-hidden="true" className="size-3.5" />
-                      </a>
+                      </ExternalLink>
                     ))}
                   </dd>
                 </div>
@@ -89,9 +78,10 @@ export default function RecruitimateCaseStudy() {
 
           <Reveal className="mt-16">
             <section aria-labelledby="cs-problem">
-              <ChapterLabel>
-                <span id="cs-problem">The problem</span>
-              </ChapterLabel>
+              <h2 id="cs-problem" className="sr-only">
+                The problem
+              </h2>
+              <EyebrowRule>The problem</EyebrowRule>
               <p className="mt-6 font-display text-title text-pretty text-ink">
                 {flagship.problem}
               </p>
@@ -100,24 +90,23 @@ export default function RecruitimateCaseStudy() {
 
           <Reveal className="mt-16">
             <section aria-labelledby="cs-principle">
-              <ChapterLabel>
-                <span id="cs-principle">The constraint we chose</span>
-              </ChapterLabel>
+              <h2 id="cs-principle" className="sr-only">
+                The constraint we chose
+              </h2>
+              <EyebrowRule>The constraint we chose</EyebrowRule>
               <blockquote className="mt-6 border-l-2 border-amber pl-6 font-display text-display text-pretty text-ink">
                 {flagship.principle}
               </blockquote>
               <p className="mt-6 text-pretty">{flagship.caseStudy.responsibleAI}</p>
               <p className="mt-4 text-pretty">
-                That refusal is a product decision, not a disclaimer — it is what makes the
-                scores defensible to the hiring teams who act on them. I wrote about the
-                reasoning in{" "}
+                {flagship.caseStudy.reflection}{" "}
                 <a
                   href={writing.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="link-underline text-ink"
                 >
-                  “{writing.title}”
+                  &ldquo;{writing.title}&rdquo;
                 </a>
                 .
               </p>
@@ -126,9 +115,10 @@ export default function RecruitimateCaseStudy() {
 
           <Reveal className="mt-16">
             <section aria-labelledby="cs-build">
-              <ChapterLabel>
-                <span id="cs-build">What I built</span>
-              </ChapterLabel>
+              <h2 id="cs-build" className="sr-only">
+                What I built
+              </h2>
+              <EyebrowRule>What I built</EyebrowRule>
               <div className="mt-8 space-y-10">
                 {buildChapters.map((chapter) => (
                   <div key={chapter.label} className="grid gap-2 sm:grid-cols-12 sm:gap-6">
@@ -144,24 +134,21 @@ export default function RecruitimateCaseStudy() {
 
           <Reveal className="mt-16">
             <section aria-labelledby="cs-outcome">
-              <ChapterLabel>
-                <span id="cs-outcome">Outcome</span>
-              </ChapterLabel>
-              <p className="mt-8 font-display text-hero font-semibold text-ink tabular-nums">
-                ~50%
-              </p>
-              <p className="mt-2 max-w-md text-pretty text-subtle">
-                less manual shortlisting effort in internal trials
-              </p>
+              <h2 id="cs-outcome" className="sr-only">
+                Outcome
+              </h2>
+              <EyebrowRule>Outcome</EyebrowRule>
+              <OutcomeStat className="mt-8" />
             </section>
           </Reveal>
 
           <Reveal className="mt-16">
             <section aria-labelledby="cs-stack">
-              <ChapterLabel>
-                <span id="cs-stack">Stack</span>
-              </ChapterLabel>
-              <StackTags items={flagship.stack} className="mt-6 font-mono text-sm text-subtle leading-relaxed" />
+              <h2 id="cs-stack" className="sr-only">
+                Stack
+              </h2>
+              <EyebrowRule>Stack</EyebrowRule>
+              <StackTags items={flagship.stack} className="mt-6 text-sm leading-relaxed" />
             </section>
           </Reveal>
         </article>

@@ -34,9 +34,8 @@ export function ProjectArt({ image, title, sizes, priority = false }: ProjectArt
     <div
       role="img"
       aria-label={`${title} artwork placeholder`}
-      className="relative flex aspect-video items-end overflow-hidden border border-line bg-secondary p-5"
+      className="flex aspect-video items-end overflow-hidden border border-line bg-secondary p-5"
     >
-      <span aria-hidden="true" className="absolute top-5 left-5 size-3 bg-amber" />
       <span className="font-mono text-xs text-subtle">{title} — artwork coming soon</span>
     </div>
   );

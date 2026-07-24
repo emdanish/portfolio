@@ -3,7 +3,32 @@
 import { motion, useReducedMotion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { CopyEmailButton } from "@/components/copy-email-button";
+import { Availability } from "@/components/availability";
 import { identity, ui } from "@/content";
+
+/** Wrap `highlight` (if present) in an amber marker span. */
+function withHighlight(line: string, highlight: string, reduceMotion: boolean) {
+  const at = line.indexOf(highlight);
+  if (at === -1) return line;
+  return (
+    <>
+      {line.slice(0, at)}
+      <span className="relative inline-block">
+        <motion.span
+          aria-hidden="true"
+          // In dark mode the marker drops below the baseline as a thin
+          // underline so light glyphs never sit on full amber.
+          className="absolute inset-x-0 bottom-[0.08em] h-[0.24em] origin-left bg-amber dark:-bottom-[0.06em] dark:h-[0.12em]"
+          initial={reduceMotion ? { opacity: 0 } : { scaleX: 0 }}
+          animate={reduceMotion ? { opacity: 1 } : { scaleX: 1 }}
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0.9 }}
+        />
+        <span className="relative">{line.slice(at, at + highlight.length)}</span>
+      </span>
+      {line.slice(at + highlight.length)}
+    </>
+  );
+}
 
 /**
  * Signature motion moment #1: a staggered, masked-line reveal of the
@@ -22,31 +47,33 @@ export function Hero() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
+      transition: { duration: 0.7, ease: "easeOut" as const },
     },
   };
 
+  const nameLines = identity.name.split(" ");
   const [statementOpen, statementClose] = identity.heroStatement;
 
   return (
-    <section aria-label="Introduction" className="mx-auto flex min-h-[calc(100dvh-4rem)] w-full max-w-6xl flex-col justify-center px-5 py-20">
+    <section
+      id="intro"
+      aria-label="Introduction"
+      className="mx-auto flex min-h-[calc(100dvh-4rem)] w-full max-w-6xl flex-col justify-center px-5 py-20"
+    >
       <motion.div initial="hidden" animate="visible" variants={container}>
-        <motion.p variants={rise} className="flex items-center gap-2.5 font-mono text-xs text-subtle uppercase">
-          <span aria-hidden="true" className="size-2 bg-amber" />
-          {identity.availability}
-        </motion.p>
+        <motion.div variants={rise}>
+          <Availability />
+        </motion.div>
 
         <h1 className="mt-8 font-display text-hero font-semibold text-balance text-ink">
-          <span className="block overflow-hidden">
-            <motion.span variants={rise} className="block">
-              Muhammad
-            </motion.span>
-          </span>{" "}
-          <span className="block overflow-hidden">
-            <motion.span variants={rise} className="block">
-              Danish
-            </motion.span>
-          </span>
+          {nameLines.map((line, i) => (
+            <span key={line} className="block overflow-hidden">
+              {i > 0 && " "}
+              <motion.span variants={rise} className="block">
+                {line}
+              </motion.span>
+            </span>
+          ))}
         </h1>
 
         <motion.p variants={rise} className="mt-6 font-mono text-sm text-subtle">
@@ -54,16 +81,10 @@ export function Hero() {
         </motion.p>
 
         <motion.p variants={rise} className="mt-10 max-w-2xl font-display text-title text-pretty text-ink">
-          {statementOpen}{" "}
-          <span className="relative inline-block">
-            <motion.span
-              aria-hidden="true"
-              className="absolute inset-x-0 bottom-[0.08em] h-[0.24em] origin-left bg-amber"
-              initial={reduceMotion ? { opacity: 0 } : { scaleX: 0 }}
-              animate={reduceMotion ? { opacity: 1 } : { scaleX: 1 }}
-              transition={{ duration: 0.5, ease: "easeOut", delay: 0.9 }}
-            />
-            <span className="relative">{statementClose}</span>
+          {/* facts.md: the statement may split typographically — one clause per line. */}
+          <span className="sm:block">{statementOpen} </span>
+          <span className="sm:block">
+            {withHighlight(statementClose, identity.heroHighlight, reduceMotion ?? false)}
           </span>
         </motion.p>
 
