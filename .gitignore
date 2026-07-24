@@ -42,3 +42,6 @@ next-env.d.ts
 
 # generated font cache for asset script
 scripts/.font-cache/
+
+# local agent tooling
+.claude/

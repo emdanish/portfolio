@@ -1,12 +1,11 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
 /* ---------------------------------------------------------------------------
  * Design tokens: minimal editorial system.
  *
- * Raw palette (from the brief + Picture.jpg):
+ * Raw palette (from the brief + the profile photo):
  *   paper   warm off-white page ground
  *   ink     navy used for display type and primary actions
  *   amber   single warm accent (frames, rules, marks), never body text

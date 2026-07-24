@@ -1,7 +1,9 @@
 /**
- * Generates every derived visual asset for the site from two inputs:
- *   - Picture.jpg (repo root)  -> editorial 4:5 About crop
- *   - the design system        -> MD monogram favicons + Open Graph image
+ * Generates every derived visual asset for the site:
+ *   - the design system -> MD monogram favicons, Open Graph image, grain tile
+ *   - Picture.jpg       -> editorial 4:5 About crop (optional: place the
+ *     original photo at the repo root to regenerate; it is not committed,
+ *     only the crop in src/images is)
  *
  * Text is converted to real glyph outlines with fontkit (Fraunces for the
  * monogram/display, JetBrains Mono for labels), so output is identical on
@@ -134,7 +136,11 @@ async function generateNoiseTile() {
 
 async function generatePortraits() {
   const src = path.join(ROOT, "Picture.jpg");
-  // Statically imported by components (not URL-served), so they live in
+  if (!existsSync(src)) {
+    console.log("portrait: skipped (no Picture.jpg at repo root; committed crop kept)");
+    return;
+  }
+  // Statically imported by components (not URL-served), so the crop lives in
   // src/images where next/image derives dimensions and blur placeholders.
   const outDir = path.join(ROOT, "src", "images");
   await mkdir(outDir, { recursive: true });

@@ -1,92 +1,93 @@
-# Muhammad Danish Portfolio
+# Muhammad Danish · Portfolio
 
-A minimal-editorial personal site for a full-stack developer building AI
-products. Single page (`/`) with anchored sections plus a flagship case study
-at `/recruitimate`. Fully static, deployed on Vercel, with a Ctrl/Cmd+K
-command palette (cmdk), scroll-spy navigation with a sliding amber indicator,
-counting metrics, a live Pakistan-time line, and a designed 404.
+The personal site of **Muhammad Danish**, a full-stack developer building
+AI-powered applications end to end with Next.js, TypeScript, FastAPI,
+PostgreSQL, and the Claude and Gemini APIs. Open to full-time roles and
+freelance projects.
 
-**Design system:** warm paper `#FAF8F5` · ink navy `#16324A` · one amber
-accent `#F6C453` · Fraunces (display) + Schibsted Grotesk (body) +
-JetBrains Mono (labels). Dark mode inverts to near-black navy paper with the
-same amber, toggled via `next-themes` (light default).
+**Live site:** [emdanish.vercel.app](https://emdanish.vercel.app) ·
+**Email:** [muhammadd03@gmail.com](mailto:muhammadd03@gmail.com) ·
+**GitHub:** [@emdanish](https://github.com/emdanish) ·
+**LinkedIn:** [in/emdanish](https://www.linkedin.com/in/emdanish)
+
+## What's on the site
+
+A single editorial page (hero, selected work, writing, experience, about,
+contact) plus a full case study at `/recruitimate` on Recruitimate, an
+AI-native hiring platform that scores candidates strictly on what they say in
+interview transcripts, never on their face or voice. The Writing section
+links the essay behind that decision: *We Taught Our Hiring AI to Ignore
+Your Face*.
+
+## Design
+
+A minimal editorial system: warm paper ground, ink navy display type, and a
+single amber accent, set in Fraunces (display serif), Schibsted Grotesk
+(body), and JetBrains Mono (labels and dates). Light by default with a dark
+mode that inverts to near-black navy paper. The MD monogram in the nav,
+footer, and favicon are one generated mark.
+
+Details worth a closer look:
+
+- **Ctrl/Cmd + K command palette** (cmdk, lazy-loaded): jump to sections,
+  copy the email address, download the CV, toggle the theme
+- Scroll-spy navigation with a sliding amber indicator and URL hash sync
+- Hero reveal built in pure CSS keyframes, so the headline paints before any
+  JavaScript loads
+- Metrics that count up once in view, a live Pakistan local-time line, and a
+  designed 404
+- Full `prefers-reduced-motion` support, keyboard navigability, AA contrast
+  in both themes, and fully static output (every route prerendered)
 
 ## Stack
 
-Next.js (App Router, TypeScript strict) · Tailwind CSS v4 · shadcn/ui
-primitives · Motion (`motion/react`) · Lucide · next/font · next-themes.
+Next.js (App Router) · TypeScript (strict) · Tailwind CSS v4 · shadcn/ui ·
+Motion · Lucide · next-themes · next/font · Vercel Analytics + Speed Insights
 
-## Content lives in one file
+## How content works
 
-**All copy, links, metrics, and project data live in
-[`src/content.ts`](src/content.ts)**, transcribed from
-[`facts.md`](facts.md) (which wins over the CV on any conflict). To change
-anything on the site, edit `facts.md`, mirror it in `src/content.ts`, and
-never invent data. Missing values render as visible TODOs.
+Everything rendered on the site comes from one typed file,
+[`src/content.ts`](src/content.ts), transcribed from
+[`facts.md`](facts.md), the single source of truth for every word, number,
+and link. Nothing is invented: metrics use only approved figures with soft
+wording, and the testimonials section renders nothing until real quotes
+exist. To change site content, edit `facts.md`, mirror it in
+`src/content.ts`, and touch no components.
 
-Testimonials: `testimonials` in `src/content.ts` is empty by design. The
-section renders nothing until real quotes are added.
+## Structure
 
-Project artwork lives in `public/images/projects/` as 1920x1080 editorial
-illustrations, one per project, referenced from each project's `image` entry
-in `src/content.ts`.
+```
+src/
+  content.ts            all site content, typed, in one place
+  app/                  layout (fonts, metadata, theme), page, /recruitimate,
+                        not-found, robots.ts, sitemap.ts, globals.css (tokens)
+  components/
+    sections/           hero, work, flagship spotlight, writing, experience,
+                        about, testimonials, contact
+    ui/                 shadcn primitives
+    ...                 nav, footer, palette, shared editorial primitives
+  images/               statically imported photo crop (generated)
+scripts/
+  generate-assets.mjs   regenerates favicons, OG card, grain tile, photo crop
+public/                 favicons, OG image, CV, project artwork
+```
 
-## Local development
+Project artwork in `public/images/projects/` is a set of 1920x1080 editorial
+illustrations, one per project, sharing the site's palette.
+
+## Run it locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open http://localhost:3000.
+Then open http://localhost:3000. `npm run build` produces the fully static
+production build; `npm run lint` should always report zero warnings.
 
-Other commands:
+## Deployment
 
-```bash
-npm run build   # production build (all routes static)
-npm run lint    # eslint, zero warnings expected
-node scripts/generate-assets.mjs   # regenerate favicons, OG image, photo crop
-```
-
-`scripts/generate-assets.mjs` derives every identity asset from `Picture.jpg`
-plus the design tokens: the About photo crop (`src/images/`), the MD
-monogram favicons (`public/`, `src/app/favicon.ico`), the 1200x630 Open
-Graph card (`public/og.png`), and the paper-grain mask tile
-(`public/noise.png`).
-
-## Deploying to Vercel
-
-1. Push this repository to GitHub.
-2. In Vercel: **Add New → Project**, import the repo. Framework preset:
-   Next.js. No configuration needed, defaults are correct.
-3. Set one environment variable (Production):
-   `NEXT_PUBLIC_SITE_URL` = the site's canonical origin, e.g.
-   `https://emdanish.vercel.app` (no trailing slash). Metadata, sitemap,
-   robots, and JSON-LD all derive from it; without it, the fallback in
-   `src/lib/site.ts` is used.
-4. Deploy. Then verify: the OG card via https://www.opengraph.xyz (or
-   X/LinkedIn share debuggers), `/sitemap.xml`, `/robots.txt`, and the
-   `/Muhammad-Danish-CV.pdf` download.
-5. When a custom domain is purchased, add it in Vercel → Domains and update
-   `NEXT_PUBLIC_SITE_URL` to match, then redeploy.
-
-## Structure
-
-```
-src/
-  content.ts            single source of truth for all site content
-  app/                  layout (fonts, metadata, theme), page, /recruitimate,
-                        robots.ts, sitemap.ts, globals.css (design tokens)
-  components/
-    sections/           hero, work, flagship-spotlight, writing, experience,
-                        about, testimonials (empty-safe), contact
-    ui/                 shadcn primitives (button)
-    …                   nav, footer, shared editorial primitives
-  images/               statically imported photo crop (generated)
-scripts/                asset generation
-public/                 favicons, OG image, CV, project artwork
-```
-
-Motion is budgeted to three signature moments (hero stagger, flagship
-spotlight/parallax, scroll fade-ups) plus quiet hovers, all
-compositor-only and disabled under `prefers-reduced-motion`.
+Deployed on Vercel with the default Next.js preset. One environment variable
+matters: `NEXT_PUBLIC_SITE_URL`, the canonical origin (for example
+`https://emdanish.vercel.app`, no trailing slash), which metadata, the
+sitemap, robots, and JSON-LD all derive from.

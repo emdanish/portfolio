@@ -14,8 +14,8 @@
 - LinkedIn: https://www.linkedin.com/in/emdanish
 - Current portfolio being replaced: https://emdanish.vercel.app
 - New domain if purchased, otherwise leave blank: not purchased
-- Profile photo: the natural-background photo in the repo root (Picture.jpg)
-- CV: the PDF in the repo root (link it for download as "Download CV")
+- Profile photo: the editorial crop at src/images/portrait-about.jpg (derived from the original natural-background photo, which is kept out of the repo)
+- CV: served from public/Muhammad-Danish-CV.pdf (linked for download as "Download CV")
 
 ## Metrics approved for publishing (use ONLY these numbers, with the soft wording shown)
 
