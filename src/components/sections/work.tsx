@@ -12,7 +12,6 @@ function ProjectCard({ project }: { project: Project }) {
     <article className="card-lift group flex h-full flex-col border border-line bg-surface">
       <ProjectArt
         image={project.image}
-        title={project.title}
         sizes="(min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw"
       />
       <div className="flex grow flex-col gap-3 p-5">

@@ -25,10 +25,9 @@ never invent data — missing values render as visible TODOs.
 Testimonials: `testimonials` in `src/content.ts` is empty by design. The
 section renders nothing until real quotes are added.
 
-Project artwork: `image.available` is `false` per project until the file in
-`public/images/projects/` exists (prompts in
-[`IMAGE_PROMPTS.md`](IMAGE_PROMPTS.md)). Flip `available: true` once a file
-is in place.
+Project artwork lives in `public/images/projects/` (1920x1080 editorial
+illustrations; the generation prompts are archived in
+[`IMAGE_PROMPTS.md`](IMAGE_PROMPTS.md) for future regeneration).
 
 ## Local development
 

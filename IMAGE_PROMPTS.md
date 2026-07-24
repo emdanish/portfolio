@@ -1,9 +1,8 @@
-# Image Generation Prompts
+# Image Generation Prompts (archive)
 
-Generate each image with your external image model, then place the file at the
-exact path shown. When all four project images are in place, tell Claude
-"continue" — the site swaps its placeholder blocks for the real artwork
-automatically (by flipping `image.available` in `src/content.ts`).
+All four project images have been generated and shipped. These prompts are
+kept as the record of the art direction, for regenerating or extending the
+set later. Each file lives at the exact path shown, at 1920x1080.
 
 **Shared art direction (already baked into every prompt below):** editorial
 illustration of the product's concept — never a fake UI screenshot; warm paper

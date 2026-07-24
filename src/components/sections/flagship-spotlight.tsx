@@ -61,11 +61,7 @@ export function FlagshipSpotlight() {
       <div className="flex flex-col gap-8 lg:col-span-5">
         <div ref={artRef} className="relative overflow-hidden">
           <motion.div style={reduceMotion ? undefined : { y: drift }} className="lg:-my-7">
-            <ProjectArt
-              image={flagship.image}
-              title={flagship.title}
-              sizes="(min-width: 1024px) 40vw, 100vw"
-            />
+            <ProjectArt image={flagship.image} sizes="(min-width: 1024px) 40vw, 100vw" priority />
           </motion.div>
           {!reduceMotion && (
             <motion.div

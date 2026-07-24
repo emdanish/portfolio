@@ -53,12 +53,7 @@ export type Project = {
   stack: readonly string[];
   /** Only links that exist in facts.md. Private repos / non-live apps are omitted. */
   links: readonly ProjectLink[];
-  image: {
-    src: string;
-    alt: string;
-    /** True once the user has generated and placed the real artwork. */
-    available: boolean;
-  };
+  image: { src: string; alt: string };
 };
 
 export const flagship = {
@@ -94,8 +89,7 @@ export const flagship = {
   caseStudyPath: "/recruitimate",
   image: {
     src: "/images/projects/recruitimate.png",
-    alt: "Editorial illustration for Recruitimate: interview transcripts being weighed on a scale.",
-    available: false,
+    alt: "Editorial illustration for Recruitimate, the hiring platform that scores candidates on what they actually say: stacks of interview transcripts weighed on a balance scale, with face-scanning tools crossed out beside it.",
   },
   /**
    * Case-study detail, sourced from the CV's Arken Systems section and
@@ -132,8 +126,7 @@ export const projects: readonly Project[] = [
     ],
     image: {
       src: "/images/projects/fyp-idea-generator.png",
-      alt: "Editorial illustration for FYP Idea Generator: academic papers flowing into a single bright idea.",
-      available: false,
+      alt: "Editorial illustration for FYP Idea Generator, the idea engine backed by real academic literature: a stream of research papers flowing into a single bright bulb of folded paper.",
     },
   },
   {
@@ -147,8 +140,7 @@ export const projects: readonly Project[] = [
     ],
     image: {
       src: "/images/projects/radiant-thought.png",
-      alt: "Editorial illustration for Radiant Thought: handwritten journal lines unfolding into radiant reflections.",
-      available: false,
+      alt: "Editorial illustration for Radiant Thought, the AI journaling app that turns entries into reflective insight: an open journal with rays and reflective forms rising from its pages.",
     },
   },
   {
@@ -162,8 +154,7 @@ export const projects: readonly Project[] = [
     ],
     image: {
       src: "/images/projects/blog-platform.png",
-      alt: "Editorial illustration for Blog Platform: printed pages arranged into ordered publishing columns.",
-      available: false,
+      alt: "Editorial illustration for Blog Platform, the full-stack publishing platform: printed pages arranging themselves into ordered publishing columns, one page highlighted in amber.",
     },
   },
 ];
