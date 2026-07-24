@@ -26,10 +26,10 @@ export const identity = {
   linkedin: "https://www.linkedin.com/in/emdanish",
   /** Portfolio this site replaces; used only as canonical-domain fallback. */
   previousSite: "https://emdanish.vercel.app",
-  /** facts.md: new domain not purchased — deploy URL is decided at deploy time. */
+  /** facts.md: new domain not purchased; deploy URL is decided at deploy time. */
   domain: null as string | null,
   cv: {
-    /** Served from /public — copied from the repo-root PDF. */
+    /** Served from /public, copied from the repo-root PDF. */
     path: "/Muhammad-Danish-CV.pdf",
     label: "Download CV",
   },
@@ -85,7 +85,7 @@ export const flagship = {
     "Gemini API",
   ],
   links: [{ label: "Visit recruitimate.app", href: "https://recruitimate.app/" }],
-  /** facts.md: repo is private — no repo link is rendered anywhere. */
+  /** facts.md: repo is private, so no repo link is rendered anywhere. */
   caseStudyPath: "/recruitimate",
   image: {
     src: "/images/projects/recruitimate.png",
@@ -109,7 +109,7 @@ export const flagship = {
     /** Connective framing for the case study; the claims trace to the CV's
      * "consistent, explainable" language and the linked essay. */
     reflection:
-      "That refusal is a product decision, not a disclaimer — it is what makes the scores explainable to the hiring teams who act on them. I wrote about the reasoning in",
+      "That refusal is a product decision, not a disclaimer. It is what makes the scores explainable to the hiring teams who act on them. I wrote about the reasoning in",
   },
 } as const;
 
@@ -149,7 +149,7 @@ export const projects: readonly Project[] = [
     oneLiner: "A full-stack publishing platform with an admin CMS.",
     stack: ["Next.js", "React", "MongoDB", "Tailwind CSS"],
     links: [
-      // facts.md: not live — only the repo link exists.
+      // facts.md: not live; only the repo link exists.
       { label: "Repo", href: "https://github.com/emdanish75/blog-app-using-react-and-mongodb" },
     ],
     image: {
@@ -179,28 +179,28 @@ export const experience: readonly Role[] = [
   {
     company: "Arken Systems",
     title: "Junior Software Engineer",
-    period: "Feb 2026 — Present",
+    period: "Feb 2026 to Present",
     summary:
       "Building AI-integrated products across React, Next.js, TypeScript, Node.js, Python (FastAPI), and PostgreSQL; core engineer on Recruitimate.",
   },
   {
     company: "RemoteFlow",
     title: "Frontend Engineer",
-    period: "Feb 2025 — Jun 2026",
+    period: "Feb 2025 to Jun 2026",
     summary:
       "Responsive, reusable UI in Next.js, React, TypeScript, and GraphQL for an AI-powered job automation platform; cut key page load times by ~25%.",
   },
   {
     company: "Baccalytics",
     title: "Full Stack Developer",
-    period: "Jun 2025 — Sep 2025",
+    period: "Jun 2025 to Sep 2025",
     summary:
       "Multi-tenant EdTech platform for IB schools on Next.js and Supabase, with role-based access control and core LMS features.",
   },
   {
     company: "Alabtaal Developers",
     title: "Junior Software Developer",
-    period: "May 2024 — Dec 2024",
+    period: "May 2024 to Dec 2024",
     summary:
       "Records management and reporting system in Java Spring Boot; Docker deployment, Jira, agile workflow.",
   },
@@ -209,7 +209,7 @@ export const experience: readonly Role[] = [
 export const education = {
   school: "Air University",
   degree: "BS Computer Science (BSCS)",
-  period: "Sep 2022 — Jun 2026",
+  period: "Sep 2022 to Jun 2026",
   detail: "CGPA 3.59",
 } as const;
 
@@ -230,21 +230,22 @@ export const skillGroups: readonly SkillGroup[] = [
 export type Testimonial = { quote: string; name: string; role: string };
 
 /**
- * facts.md: NONE YET — real quotes will be added later. The section renders
+ * facts.md: NONE YET. Real quotes will be added later; the section renders
  * nothing while this list is empty. Never fabricate entries.
  */
 export const testimonials: readonly Testimonial[] = [];
 
 /**
  * About copy, written strictly from facts.md and the CV in first person
- * (~150 words). Sources for each claim: hero statement, Arken/Recruitimate
- * build details, transcript-only principle, RemoteFlow/Baccalytics/Alabtaal
- * roles, education, and availability.
+ * (~130 words). Sources for each claim: CV "ships production features end to
+ * end, from schema and API design through Vercel deployment", the
+ * transcript-only principle, prior roles, and education. Kept deliberately
+ * free of sentences that also appear in the Selected Work section.
  */
 export const about: readonly string[] = [
-  "I'm Muhammad Danish, a full-stack developer in Pakistan building AI products end to end. At Arken Systems I'm a core engineer on Recruitimate, an AI-native hiring platform: Next.js and TypeScript up front, FastAPI on multi-tenant PostgreSQL behind, real-time interviews over LiveKit with streaming transcription, and LLM scoring through the Claude and Gemini APIs.",
-  "The part I care about most is deciding what the product should refuse to do. Recruitimate scores candidates only on what they say in the transcript — no facial or vocal affect inference — a line we drew deliberately, aligned with the EU AI Act. I wrote about that decision, and I'd draw the same line again.",
-  "Before this, I cut key page load times by roughly 25% at RemoteFlow, built a multi-tenant EdTech platform at Baccalytics, and shipped a Spring Boot records system at Alabtaal Developers. I finished my BSCS at Air University in June 2026, and I'm open to full-time roles and freelance projects.",
+  "I'm Muhammad Danish, a full-stack developer in Pakistan. I build AI products whole, from schema and API design through prompt pipelines and streaming interfaces to the deploy that ships them, and I care that the seams never show.",
+  "The part I care about most is deciding what the product should refuse to do. Recruitimate scores candidates only on what they say in the transcript, never on their face or voice: a line we drew deliberately, in step with the EU AI Act. I wrote about that decision, and I'd draw the same line again.",
+  "Before Arken Systems, I made key page loads roughly 25% faster at RemoteFlow, built a multi-tenant EdTech platform at Baccalytics, and shipped a Spring Boot records system at Alabtaal Developers. I finished my BSCS at Air University in June 2026.",
 ];
 
 /** Site chrome and shared UI strings, kept here so copy lives in one file. */
@@ -269,17 +270,17 @@ export const sections = {
   writing: {
     eyebrow: "Writing",
     title: "Notes from the build.",
-    lede: "On the decisions behind the products — starting with the one we refused to make.",
+    lede: "On the decisions behind the products, starting with the one we refused to make.",
   },
   experience: { eyebrow: "Experience", title: "Where I've worked." },
   about: { eyebrow: "About", title: "The person behind the work." },
   testimonials: { eyebrow: "Testimonials", title: "What people say." },
   contact: {
     heading: "Tell me what you're building.",
-    lede: "The fastest way to reach me is email — I read everything.",
+    lede: "The fastest way to reach me is email. I read everything.",
   },
 } as const;
 
 /** Search/social description used by metadata across the site. */
 export const seoDescription =
-  "Muhammad Danish is a full-stack developer building AI-powered applications end to end — Next.js, TypeScript, FastAPI, PostgreSQL, and the Claude and Gemini APIs. Open to full-time roles and freelance projects.";
+  "Muhammad Danish is a full-stack developer building AI-powered applications end to end with Next.js, TypeScript, FastAPI, PostgreSQL, and the Claude and Gemini APIs. Open to full-time roles and freelance projects.";

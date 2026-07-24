@@ -3,7 +3,7 @@ import { SectionHeading } from "@/components/section-heading";
 import { sections, testimonials } from "@/content";
 
 /**
- * Renders nothing while the testimonials list in src/content.ts is empty —
+ * Renders nothing while the testimonials list in src/content.ts is empty;
  * facts.md forbids fabricating quotes. The layout activates on its own once
  * real recommendations are added.
  */
@@ -23,7 +23,7 @@ export function Testimonials() {
                     “{t.quote}”
                   </blockquote>
                   <figcaption className="mt-auto font-mono text-xs text-subtle">
-                    {t.name} — {t.role}
+                    {t.name}, {t.role}
                   </figcaption>
                 </figure>
               </Reveal>

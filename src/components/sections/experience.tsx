@@ -27,15 +27,24 @@ export function Experience() {
             </li>
           ))}
         </ol>
+        {/* Education is set apart from employment: a mono tag where the
+            roles carry dates, so the timeline reads as two distinct kinds. */}
         <Reveal className="mt-12">
           <div className="grid gap-2 sm:grid-cols-12 sm:gap-6">
-            <p className="font-mono text-xs text-subtle uppercase sm:col-span-3">
-              {education.period}
+            <p className="sm:col-span-3">
+              <span className="inline-block border border-line px-2 py-0.5 font-mono text-xs text-subtle uppercase">
+                Education
+              </span>
             </p>
-            <p className="sm:col-span-9 text-pretty">
-              <span className="text-ink">{education.degree}</span>, {education.school} —{" "}
-              <span className="font-mono text-sm tabular-nums">{education.detail}</span>
-            </p>
+            <div className="sm:col-span-9">
+              <h3 className="font-display text-title text-balance text-ink">
+                {education.degree} <span aria-hidden="true">·</span>{" "}
+                <span className="text-subtle">{education.school}</span>
+              </h3>
+              <p className="mt-2 font-mono text-xs text-subtle uppercase">
+                {education.period} · <span className="tabular-nums">{education.detail}</span>
+              </p>
+            </div>
           </div>
         </Reveal>
       </div>

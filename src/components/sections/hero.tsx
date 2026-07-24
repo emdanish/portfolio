@@ -81,7 +81,7 @@ export function Hero() {
         </motion.p>
 
         <motion.p variants={rise} className="mt-10 max-w-2xl font-display text-title text-pretty text-ink">
-          {/* facts.md: the statement may split typographically — one clause per line. */}
+          {/* facts.md: the statement may split typographically, one clause per line. */}
           <span className="sm:block">{statementOpen} </span>
           <span className="sm:block">
             {withHighlight(statementClose, identity.heroHighlight, reduceMotion ?? false)}

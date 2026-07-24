@@ -10,7 +10,7 @@ type RevealProps = {
 };
 
 /**
- * Scroll-triggered fade-up — signature motion moment #3. Animates
+ * Scroll-triggered fade-up, signature motion moment #3. Animates
  * compositor props only and collapses to a plain fade when the visitor
  * prefers reduced motion.
  */

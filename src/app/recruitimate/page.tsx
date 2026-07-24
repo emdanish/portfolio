@@ -12,16 +12,16 @@ import { flagship, identity, writing } from "@/content";
 import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Recruitimate — Case Study",
+  title: "Recruitimate Case Study",
   description: flagship.oneLiner,
   alternates: { canonical: "/recruitimate" },
   openGraph: {
     type: "article",
     url: `${SITE_URL}/recruitimate`,
     siteName: identity.name,
-    title: "Recruitimate — Case Study",
+    title: "Recruitimate Case Study",
     description: flagship.oneLiner,
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: `${identity.name} — portfolio` }],
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: `Portfolio of ${identity.name}` }],
   },
 };
 

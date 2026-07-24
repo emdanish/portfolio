@@ -4,12 +4,12 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ---------------------------------------------------------------------------
- * Design tokens — minimal editorial system.
+ * Design tokens: minimal editorial system.
  *
  * Raw palette (from the brief + Picture.jpg):
  *   paper   warm off-white page ground
  *   ink     navy used for display type and primary actions
- *   amber   single warm accent (frames, rules, marks) — never body text
+ *   amber   single warm accent (frames, rules, marks), never body text
  *   line    warm hairline borders
  *
  * shadcn semantics (background/foreground/primary/…) are mapped onto these
@@ -25,7 +25,7 @@
   --muted-text: #57646f;
   --line: #e6e0d4;
   --amber: #f6c453;
-  /* Text on full-strength amber is always this navy, in both themes —
+  /* Text on full-strength amber is always this navy in both themes,
      deliberately NOT var(--ink), which flips light in dark mode. */
   --ink-on-amber: #16324a;
 
@@ -106,7 +106,7 @@
   --radius-lg: calc(var(--radius) + 2px);
   --radius-xl: calc(var(--radius) + 6px);
 
-  /* Fluid editorial type scale — display sizes only; body sizes stay on
+  /* Fluid editorial type scale, display sizes only; body sizes stay on
      Tailwind defaults. */
   --text-hero: clamp(2.9rem, 8.2vw, 6.75rem);
   --text-hero--line-height: 0.98;
@@ -144,8 +144,8 @@ body {
 }
 
 /* Hover lift for cards: transform transitions on the element, while the
-   shadow is pre-painted on a pseudo-element and cross-faded via opacity —
-   no box-shadow interpolation (paint) on hover. */
+   shadow is pre-painted on a pseudo-element and cross-faded via opacity,
+   with no box-shadow interpolation (paint) on hover. */
 .card-lift {
   position: relative;
   transition: transform 200ms ease-out;

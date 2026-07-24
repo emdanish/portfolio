@@ -36,7 +36,7 @@ export function FlagshipSpotlight() {
         </h3>
         <p className="mt-4 max-w-2xl text-lg text-pretty">{flagship.oneLiner}</p>
 
-        {/* On small screens the outcome leads — recruiters see the proof
+        {/* On small screens the outcome leads, so recruiters see the proof
             point right under the one-liner instead of two screens down. */}
         <OutcomeStat className="mt-8 lg:hidden" />
 

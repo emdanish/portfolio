@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { cn } from "@/lib/utils";
 
 /**
- * Quiet mono list of technologies, separated by interpuncts — facts.md asks
+ * Quiet mono list of technologies, separated by interpuncts; facts.md asks
  * for grouped, visually quiet skills (never bars or meters).
  */
 export function StackTags({ items, className }: { items: readonly string[]; className?: string }) {

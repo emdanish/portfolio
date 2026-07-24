@@ -1,4 +1,4 @@
-# Muhammad Danish — Portfolio
+# Muhammad Danish Portfolio
 
 A minimal-editorial personal site for a full-stack developer building AI
 products. Single page (`/`) with anchored sections plus a flagship case study
@@ -20,7 +20,7 @@ primitives · Motion (`motion/react`) · Lucide · next/font · next-themes.
 [`src/content.ts`](src/content.ts)**, transcribed from
 [`facts.md`](facts.md) (which wins over the CV on any conflict). To change
 anything on the site, edit `facts.md`, mirror it in `src/content.ts`, and
-never invent data — missing values render as visible TODOs.
+never invent data. Missing values render as visible TODOs.
 
 Testimonials: `testimonials` in `src/content.ts` is empty by design. The
 section renders nothing until real quotes are added.
@@ -42,7 +42,7 @@ Other commands:
 
 ```bash
 npm run build   # production build (all routes static)
-npm run lint    # eslint — zero warnings expected
+npm run lint    # eslint, zero warnings expected
 node scripts/generate-assets.mjs   # regenerate favicons, OG image, photo crops
 node scripts/screenshots.mjs <url> <outdir>   # QA screenshots (system Chrome)
 node scripts/scrollspy-test.mjs <url>         # nav hash-sync functional check
@@ -58,7 +58,7 @@ Graph card (`public/og.png`).
 
 1. Push this repository to GitHub.
 2. In Vercel: **Add New → Project**, import the repo. Framework preset:
-   Next.js — no configuration needed, defaults are correct.
+   Next.js. No configuration needed, defaults are correct.
 3. Set one environment variable (Production):
    `NEXT_PUBLIC_SITE_URL` = the site's canonical origin, e.g.
    `https://emdanish.vercel.app` (no trailing slash). Metadata, sitemap,
@@ -87,6 +87,6 @@ scripts/                asset generation + QA scripts
 public/                 favicons, OG image, CV, project artwork slots
 ```
 
-Motion is budgeted to three signature moments — hero stagger, flagship
-spotlight/parallax, scroll fade-ups — plus quiet hovers, all
+Motion is budgeted to three signature moments (hero stagger, flagship
+spotlight/parallax, scroll fade-ups) plus quiet hovers, all
 compositor-only and disabled under `prefers-reduced-motion`.

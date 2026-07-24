@@ -24,13 +24,13 @@ const jetbrains = JetBrains_Mono({
   display: "swap",
 });
 
-const siteTitle = `${identity.name} — ${identity.role}`;
+const siteTitle = `${identity.name} · ${identity.role}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: siteTitle,
-    template: `%s — ${identity.name}`,
+    template: `%s · ${identity.name}`,
   },
   description: seoDescription,
   openGraph: {
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     siteName: identity.name,
     title: siteTitle,
     description: seoDescription,
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: `${identity.name} — portfolio` }],
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: `Portfolio of ${identity.name}` }],
   },
   // Card-only: each page's twitter title/description/image autofill from its
   // own resolved Open Graph, so /recruitimate doesn't inherit homepage copy.

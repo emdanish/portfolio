@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * The availability line with the amber status square. The square is reserved
- * for this one meaning across the site — availability — so the accent keeps
+ * for this one meaning across the site (availability) so the accent keeps
  * its signal value.
  */
 export function Availability({ className }: { className?: string }) {

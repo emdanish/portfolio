@@ -80,7 +80,7 @@ export function SiteNav() {
         <a
           href="#top"
           className="flex items-center gap-3"
-          aria-label={`${identity.name} — back to top`}
+          aria-label={`${identity.name}, back to top`}
           onClick={() => setMenuOpen(false)}
         >
           <Image
@@ -133,7 +133,7 @@ export function SiteNav() {
         </div>
       </nav>
 
-      {/* Mobile disclosure — in-flow panel, not a modal, so focus stays natural. */}
+      {/* Mobile disclosure: an in-flow panel, not a modal, so focus stays natural. */}
       <nav
         id="mobile-menu"
         ref={menuRef}

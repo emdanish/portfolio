@@ -26,7 +26,7 @@ function ProjectCard({ project }: { project: Project }) {
               iconClassName="transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none"
             >
               {link.label}
-              <span className="sr-only">— {project.title}</span>
+              <span className="sr-only">, {project.title}</span>
             </ExternalLink>
           ))}
         </div>

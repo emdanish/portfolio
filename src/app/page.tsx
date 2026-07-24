@@ -37,7 +37,7 @@ export default function HomePage() {
       <SiteFooter />
       <script
         type="application/ld+json"
-        // Static, build-time content from src/content.ts — nothing user-generated.
+        // Static, build-time content from src/content.ts; nothing user-generated.
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
       />
     </div>

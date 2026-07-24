@@ -5,7 +5,7 @@
  *
  * Text is converted to real glyph outlines with fontkit (Fraunces for the
  * monogram/display, JetBrains Mono for labels), so output is identical on
- * any machine — no system-font dependency.
+ * any machine, with no system-font dependency.
  *
  * Run: node scripts/generate-assets.mjs
  */
@@ -67,7 +67,7 @@ function textPath(font, text, size, variation) {
 
 const group = (p, tx, ty, fill) => `<g transform="translate(${tx} ${ty})"><path d="${p}" fill="${fill}"/></g>`;
 
-/** Amber square + Fraunces "MD" in ink — the identity mark. */
+/** Amber square + Fraunces "MD" in ink: the identity mark. */
 function monogramSvg(sizePx, fraunces) {
   const md = textPath(fraunces, "MD", sizePx * 0.44, { wght: 560, opsz: 144, SOFT: 0, WONK: 0 });
   const tx = (sizePx - md.width) / 2;

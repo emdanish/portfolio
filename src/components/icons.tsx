@@ -1,5 +1,5 @@
 /**
- * Brand icons removed from lucide 1.x — inlined here from Simple Icons (CC0).
+ * Brand icons were removed from lucide 1.x, so these are inlined from Simple Icons (CC0).
  */
 
 type IconProps = React.SVGProps<SVGSVGElement>;

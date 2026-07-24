@@ -22,7 +22,7 @@ export function CopyEmailButton({ className }: { className?: string }) {
       clearTimeout(timer.current);
       timer.current = setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Clipboard unavailable (permissions/old browser) — the adjacent
+      // Clipboard unavailable (permissions/old browser); the adjacent
       // mailto link remains the primary path, so fail quietly.
     }
   }
