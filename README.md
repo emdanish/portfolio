@@ -5,7 +5,7 @@ AI-powered applications end to end with Next.js, TypeScript, FastAPI,
 PostgreSQL, and the Claude and Gemini APIs. Open to full-time roles and
 freelance projects.
 
-**Live site:** [emdanish.vercel.app](https://emdanish.dev) ·
+**Live site:** [emdanish.dev](https://emdanish.dev) ·
 **Email:** [muhammadd03@gmail.com](mailto:muhammadd03@gmail.com) ·
 **GitHub:** [@emdanish](https://github.com/emdanish) ·
 **LinkedIn:** [in/emdanish](https://www.linkedin.com/in/emdanish)
