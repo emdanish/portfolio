@@ -3,6 +3,7 @@ import { GitHubIcon, LinkedInIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { CopyEmailButton } from "@/components/copy-email-button";
 import { Availability } from "@/components/availability";
+import { LocalTime } from "@/components/local-time";
 import { Reveal } from "@/components/reveal";
 import { identity, sections } from "@/content";
 
@@ -11,7 +12,12 @@ export function Contact() {
     <section id="contact" className="scroll-mt-24 px-5 py-24 sm:py-32">
       <div className="mx-auto max-w-6xl border-t border-line pt-20">
         <Reveal>
-          <Availability />
+          <div className="flex items-baseline justify-between gap-4">
+            <Availability />
+            <span aria-hidden="true" className="shrink-0 font-mono text-5xl text-line tabular-nums select-none">
+              05
+            </span>
+          </div>
           <h2 className="mt-6 max-w-3xl font-display text-display font-semibold text-balance text-ink">
             {sections.contact.heading}
           </h2>
@@ -27,6 +33,10 @@ export function Contact() {
               {identity.email}
             </a>
             <CopyEmailButton />
+          </div>
+
+          <div className="mt-6">
+            <LocalTime />
           </div>
 
           <div className="mt-12 flex flex-wrap items-center gap-4">

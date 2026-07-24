@@ -39,7 +39,7 @@ export function Work() {
   return (
     <section id="work" className="scroll-mt-24 px-5 py-24 sm:py-32">
       <div className="mx-auto max-w-6xl">
-        <SectionHeading eyebrow={sections.work.eyebrow} title={sections.work.title} />
+        <SectionHeading eyebrow={sections.work.eyebrow} title={sections.work.title} number="01" />
         <div className="mt-16">
           <Reveal>
             <FlagshipSpotlight />

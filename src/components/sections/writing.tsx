@@ -11,6 +11,7 @@ export function Writing() {
           eyebrow={sections.writing.eyebrow}
           title={sections.writing.title}
           lede={sections.writing.lede}
+          number="02"
         />
         <Reveal className="mt-16">
           <a

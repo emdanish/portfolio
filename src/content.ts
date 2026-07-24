@@ -35,14 +35,20 @@ export const identity = {
   },
 } as const;
 
-/*
- * Metrics approved for publishing (facts.md: use ONLY these numbers, with the
- * soft wording shown there). Where each one ships:
- *   - ~50% shortlisting  -> flagship.outcome (work section + case study)
- *   - ~25% page loads    -> experience[1].summary and about[2]
- *   - ~5 hours/week      -> approved but currently unused (no section calls
- *                           for it; do not invent a home for it)
+/**
+ * The three metrics approved for publishing (facts.md: use ONLY these
+ * numbers, keeping the soft wording). Rendered as counting stats in the
+ * Experience section; the ~50% also appears as flagship.outcome.
  */
+export const metrics = [
+  { value: 50, prefix: "~", suffix: "%", label: "less manual shortlisting effort in internal trials" },
+  { value: 25, prefix: "~", suffix: "%", label: "reduction in key page load times at RemoteFlow" },
+  { value: 5, prefix: "~", suffix: " hrs", label: "saved weekly by automation workflows" },
+] as const;
+
+/** Status line for the footer. Sources: the Arken/Recruitimate role and the essay. */
+export const currently =
+  "Currently: building Recruitimate at Arken Systems, and writing about responsible AI.";
 
 export type ProjectLink = { label: string; href: string };
 

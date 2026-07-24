@@ -1,9 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Menu, X } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 import { Button } from "@/components/ui/button";
+import { CommandPalette } from "@/components/command-palette";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { identity, ui } from "@/content";
 import { cn } from "@/lib/utils";
@@ -12,6 +14,8 @@ import avatar from "@/images/avatar.jpg";
 // "intro" is the hero: while it holds the eyeline band no section is active
 // and the hash is cleared.
 const sectionIds = ["intro", ...ui.nav.map((item) => item.href.slice(1))];
+
+const emptySubscribe = () => () => {};
 
 /**
  * Track which page section is in view and mirror it into the URL hash.
@@ -56,9 +60,28 @@ function useActiveSection() {
 
 export function SiteNav() {
   const active = useActiveSection();
+  const reduceMotion = useReducedMotion();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [paletteOpen, setPaletteOpen] = useState(false);
   const menuRef = useRef<HTMLElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
+
+  const isMac = useSyncExternalStore(
+    emptySubscribe,
+    () => /mac/i.test(navigator.platform),
+    () => false,
+  );
+
+  useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key.toLowerCase() === "k" && (event.metaKey || event.ctrlKey)) {
+        event.preventDefault();
+        setPaletteOpen((open) => !open);
+      }
+    }
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -95,25 +118,46 @@ export function SiteNav() {
         </a>
 
         <ul role="list" className="hidden items-center gap-7 md:flex">
-          {ui.nav.map((item) => (
-            <li key={item.href}>
-              <a
-                href={`/${item.href}`}
-                aria-current={active === item.href.slice(1) ? "true" : undefined}
-                className={cn(
-                  "link-underline font-mono text-xs uppercase transition-colors",
-                  active === item.href.slice(1)
-                    ? "text-ink after:scale-x-100 after:bg-amber"
-                    : "text-subtle hover:text-ink",
-                )}
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
+          {ui.nav.map((item) => {
+            const isActive = active === item.href.slice(1);
+            return (
+              <li key={item.href}>
+                <a
+                  href={`/${item.href}`}
+                  aria-current={isActive ? "true" : undefined}
+                  className={cn(
+                    "relative font-mono text-xs uppercase transition-colors",
+                    isActive ? "text-ink" : "text-subtle hover:text-ink",
+                  )}
+                >
+                  {item.label}
+                  {isActive &&
+                    (reduceMotion ? (
+                      <span aria-hidden="true" className="absolute inset-x-0 -bottom-1.5 h-0.5 bg-amber" />
+                    ) : (
+                      // Shared layoutId slides the amber bar between links.
+                      <motion.span
+                        layoutId="nav-indicator"
+                        aria-hidden="true"
+                        className="absolute inset-x-0 -bottom-1.5 h-0.5 bg-amber"
+                        transition={{ type: "spring", stiffness: 400, damping: 34 }}
+                      />
+                    ))}
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setPaletteOpen(true)}
+            aria-label="Open command palette"
+            className="hidden cursor-pointer items-center gap-1 border border-line px-2 py-1 font-mono text-xs text-subtle transition-colors hover:border-ink/40 hover:text-ink md:inline-flex"
+          >
+            {isMac ? "⌘" : "Ctrl"} K
+          </button>
           <ThemeToggle />
           <Button asChild size="sm">
             <a href={`mailto:${identity.email}`}>{ui.cta.primary}</a>
@@ -158,6 +202,8 @@ export function SiteNav() {
           ))}
         </ul>
       </nav>
+
+      <CommandPalette open={paletteOpen} onOpenChange={setPaletteOpen} />
     </header>
   );
 }

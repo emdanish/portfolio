@@ -6,16 +6,18 @@ type SectionHeadingProps = {
   title: string;
   /** Optional one-line framing sentence under the title. */
   lede?: string;
+  /** Oversized ghost numeral for the section's place in the page order. */
+  number?: string;
 };
 
 /**
  * Editorial section opener: mono eyebrow against a hairline rule, then a
  * Fraunces display title. Every section shares this masthead rhythm.
  */
-export function SectionHeading({ eyebrow, title, lede }: SectionHeadingProps) {
+export function SectionHeading({ eyebrow, title, lede, number }: SectionHeadingProps) {
   return (
     <Reveal>
-      <EyebrowRule>{eyebrow}</EyebrowRule>
+      <EyebrowRule number={number}>{eyebrow}</EyebrowRule>
       <h2 className="mt-6 font-display text-display text-balance text-ink">{title}</h2>
       {lede ? <p className="mt-4 max-w-xl text-pretty text-subtle">{lede}</p> : null}
     </Reveal>

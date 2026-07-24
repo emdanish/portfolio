@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, JetBrains_Mono, Schibsted_Grotesk } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "@/components/theme-provider";
 import { identity, seoDescription } from "@/content";
 import { SITE_URL } from "@/lib/site";
@@ -81,6 +83,8 @@ export default function RootLayout({
           </a>
           {children}
         </ThemeProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
