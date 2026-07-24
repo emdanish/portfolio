@@ -2,7 +2,9 @@
 
 A minimal-editorial personal site for a full-stack developer building AI
 products. Single page (`/`) with anchored sections plus a flagship case study
-at `/recruitimate`. Fully static, deployed on Vercel.
+at `/recruitimate`. Fully static, deployed on Vercel, with a Ctrl/Cmd+K
+command palette (cmdk), scroll-spy navigation with a sliding amber indicator,
+counting metrics, a live Pakistan-time line, and a designed 404.
 
 **Design system:** warm paper `#FAF8F5` · ink navy `#16324A` · one amber
 accent `#F6C453` · Fraunces (display) + Schibsted Grotesk (body) +
@@ -51,8 +53,9 @@ node scripts/a11y-test.mjs <url>              # reduced-motion + focus check
 
 `scripts/generate-assets.mjs` derives every identity asset from `Picture.jpg`
 plus the design tokens: the About/nav photo crops (`src/images/`), the MD
-monogram favicons (`public/`, `src/app/favicon.ico`), and the 1200x630 Open
-Graph card (`public/og.png`).
+monogram favicons (`public/`, `src/app/favicon.ico`), the 1200x630 Open
+Graph card (`public/og.png`), and the paper-grain mask tile
+(`public/noise.png`).
 
 ## Deploying to Vercel
 
