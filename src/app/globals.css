@@ -1,26 +1,166 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ---------------------------------------------------------------------------
+ * Design tokens — minimal editorial system.
+ *
+ * Raw palette (from the brief + Picture.jpg):
+ *   paper   warm off-white page ground
+ *   ink     navy used for display type and primary actions
+ *   amber   single warm accent (frames, rules, marks) — never body text
+ *   line    warm hairline borders
+ *
+ * shadcn semantics (background/foreground/primary/…) are mapped onto these
+ * so ui primitives inherit the palette. `--accent` is shadcn's hover wash
+ * (a soft amber tint via color-mix); full-strength amber is `--amber`.
+ * ------------------------------------------------------------------------ */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #faf8f5;
+  --surface: #ffffff;
+  --ink: #16324a;
+  --body-text: #374049;
+  --muted-text: #57646f;
+  --line: #e6e0d4;
+  --amber: #f6c453;
+
+  --background: var(--paper);
+  --foreground: var(--body-text);
+  --card: var(--surface);
+  --card-foreground: var(--body-text);
+  --popover: var(--surface);
+  --popover-foreground: var(--body-text);
+  --primary: var(--ink);
+  --primary-foreground: var(--paper);
+  --secondary: #f0ebe1;
+  --secondary-foreground: var(--ink);
+  --muted: #f0ebe1;
+  --muted-foreground: var(--muted-text);
+  --accent: color-mix(in oklab, var(--amber) 22%, var(--paper));
+  --accent-foreground: var(--ink);
+  --destructive: #b3261e;
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--ink);
+
+  --radius: 0.25rem;
+}
+
+.dark {
+  --paper: #0a121d;
+  --surface: #111d2b;
+  --ink: #e9eef4;
+  --body-text: #c3cdd7;
+  --muted-text: #97a4b1;
+  --line: #22334a;
+  --amber: #f6c453;
+
+  --secondary: #182636;
+  --secondary-foreground: var(--ink);
+  --muted: #182636;
+  --accent: color-mix(in oklab, var(--amber) 14%, var(--paper));
+  --destructive: #ff8577;
+  --ring: var(--amber);
 }
 
 @theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-body: var(--body-text);
+  --color-subtle: var(--muted-text);
+  --color-line: var(--line);
+  --color-amber: var(--amber);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-grotesk);
+  --font-mono: var(--font-jetbrains);
+
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 6px);
+
+  /* Fluid editorial type scale — display sizes only; body sizes stay on
+     Tailwind defaults. */
+  --text-hero: clamp(2.9rem, 8.2vw, 6.75rem);
+  --text-hero--line-height: 0.98;
+  --text-display: clamp(2.1rem, 1.4rem + 2.6vw, 3.4rem);
+  --text-display--line-height: 1.05;
+  --text-title: clamp(1.45rem, 1.2rem + 1vw, 1.9rem);
+  --text-title--line-height: 1.15;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  scroll-padding-top: 6rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--amber);
+  color: #16324a;
+}
+
+/* Visible keyboard focus everywhere; components with ring utilities win. */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Animated editorial link underline: compositor-only (scaleX transform). */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.15em;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 180ms ease-out;
+}
+.link-underline:hover::after,
+.link-underline:focus-visible::after {
+  transform: scaleX(1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .link-underline::after {
+    transition: none;
+  }
 }
