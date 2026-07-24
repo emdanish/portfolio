@@ -44,7 +44,7 @@
 - My role: Full-stack developer at Arken Systems, Feb 2026 to Present; built, secured, and tested production features.
 - Build: Next.js 15 App Router frontend with React 19 and TypeScript; Next.js API routes on Node.js; Appwrite (authentication, storage) with MariaDB; role-based access control across roughly 10 user roles; Meta Ads OAuth integration; security hardening covering CSRF, stored XSS, IDOR prevention, and token encryption; a 16-batch automated testing process that identified 93 findings, all resolved with zero regressions before production readiness.
 - Stack tags: Next.js, React, TypeScript, Appwrite, MariaDB, Docker
-- Live URL: none (internal enterprise platform)
+- Live URL: https://zovo.i-o.digital/
 - Repo URL: private
 - Image file: public/images/projects/zovo.png
 

@@ -46,9 +46,9 @@ export const metrics = [
   { value: 5, prefix: "~", suffix: " hrs", label: "saved weekly by automation workflows" },
 ] as const;
 
-/** Status line for the footer. Sources: the Arken/Recruitimate role and the essay. */
+/** Status line for the footer. Sources: the Arken roles (Recruitimate, Zovo) and the essay. */
 export const currently =
-  "Currently: building Recruitimate at Arken Systems, and writing about responsible AI.";
+  "Currently: building Recruitimate and Zovo at Arken Systems, and writing about responsible AI.";
 
 export type ProjectLink = { label: string; href: string };
 
@@ -128,8 +128,8 @@ export const projects: readonly Project[] = [
     oneLiner:
       "An enterprise marketing and campaign management platform where agencies run influencer campaigns, digital advertising, and finance workflows from a single dashboard.",
     stack: ["Next.js", "React", "TypeScript", "Appwrite", "MariaDB", "Docker"],
-    // facts.md: internal enterprise platform; no live URL, repo private.
-    links: [],
+    // facts.md: repo is private; only the live link renders.
+    links: [{ label: "Live", href: "https://zovo.i-o.digital/" }],
     image: {
       src: "/images/projects/zovo.png",
       alt: "Editorial illustration for Zovo, the enterprise marketing platform: scattered campaign threads carrying megaphones, coins, and charts weaving into one ordered switchboard console.",
