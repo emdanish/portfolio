@@ -89,6 +89,7 @@ export function FlagshipSpotlight() {
           {flagship.links.map((link) => (
             <ExternalLink key={link.href} href={link.href}>
               {link.label}
+              <span className="sr-only"> of {flagship.title}</span>
             </ExternalLink>
           ))}
         </div>

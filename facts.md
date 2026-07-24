@@ -97,9 +97,9 @@
 ## Skills to display (keep grouped and visually quiet, no percentage bars ever)
 
 - Frontend: Next.js, React, TypeScript, Tailwind CSS
-- Backend: Node.js, Express.js, FastAPI (Python), REST, GraphQL, WebSockets
-- AI: Claude API, Gemini API, RAG, prompt engineering, streaming
-- Data: PostgreSQL, MongoDB, MySQL, Supabase, pgvector
+- Backend: Node.js, Express.js, FastAPI (Python), REST, GraphQL, WebSockets, LiveKit
+- AI: Claude API, Gemini API, Mistral AI, AssemblyAI, CORE Research API, RAG, prompt engineering, streaming
+- Data: PostgreSQL, MongoDB, MySQL, MariaDB, Supabase, Appwrite, pgvector
 - Practices: Git, Docker, CI/CD, Vercel, code review, testing
 
 ## Testimonials

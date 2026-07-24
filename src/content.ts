@@ -36,14 +36,16 @@ export const identity = {
 } as const;
 
 /**
- * The three metrics approved for publishing (facts.md: use ONLY these
- * numbers, keeping the soft wording). Rendered as counting stats in the
- * Experience section; the ~50% also appears as flagship.outcome.
+ * The Experience metric strip. Each real number appears at most twice on the
+ * page and never twice in adjacent sections: the ~50% lives only in the
+ * flagship spotlight and case study (its canonical home); ~25% here and in
+ * the RemoteFlow role line; ~5 hrs only here. The project count is padded to
+ * echo the section numerals and is countable from this very page.
  */
 export const metrics = [
-  { value: 50, prefix: "~", suffix: "%", label: "less manual shortlisting effort in internal trials" },
   { value: 25, prefix: "~", suffix: "%", label: "reduction in key page load times at RemoteFlow" },
   { value: 5, prefix: "~", suffix: " hrs", label: "saved weekly by automation workflows" },
+  { value: 5, prefix: "0", suffix: "", label: "production projects" },
 ] as const;
 
 /** Status line for the footer. Sources: the Arken roles (Recruitimate, Zovo) and the essay. */
@@ -92,7 +94,7 @@ export const flagship = {
     "Claude API",
     "Gemini API",
   ],
-  links: [{ label: "Visit recruitimate.app", href: "https://recruitimate.app/" }],
+  links: [{ label: "Live demo", href: "https://recruitimate.app/" }],
   /** facts.md: repo is private, so no repo link is rendered anywhere. */
   caseStudyPath: "/recruitimate",
   image: {
@@ -129,7 +131,7 @@ export const projects: readonly Project[] = [
       "An enterprise marketing and campaign management platform where agencies run influencer campaigns, digital advertising, and finance workflows from a single dashboard.",
     stack: ["Next.js", "React", "TypeScript", "Appwrite", "MariaDB", "Docker"],
     // facts.md: repo is private; only the live link renders.
-    links: [{ label: "Live", href: "https://zovo.i-o.digital/" }],
+    links: [{ label: "Live demo", href: "https://zovo.i-o.digital/" }],
     image: {
       src: "/images/projects/zovo.png",
       alt: "Editorial illustration for Zovo, the enterprise marketing platform: scattered campaign threads carrying megaphones, coins, and charts weaving into one ordered switchboard console.",
@@ -142,8 +144,8 @@ export const projects: readonly Project[] = [
       "A research-grounded idea engine that generates final year project ideas backed by real academic literature.",
     stack: ["Next.js", "React", "Mistral AI", "CORE Research API", "Supabase", "Tailwind CSS"],
     links: [
-      { label: "Live", href: "https://fypideagen.vercel.app/" },
-      { label: "Repo", href: "https://github.com/emdanish/fyp-idea-generator" },
+      { label: "Live demo", href: "https://fypideagen.vercel.app/" },
+      { label: "Source code", href: "https://github.com/emdanish/fyp-idea-generator" },
     ],
     image: {
       src: "/images/projects/fyp-idea-generator.png",
@@ -156,8 +158,8 @@ export const projects: readonly Project[] = [
     oneLiner: "An AI journaling app that turns entries into reflective insight.",
     stack: ["React", "TypeScript", "Supabase", "Gemini API", "Tailwind CSS"],
     links: [
-      { label: "Live", href: "https://radiantthought.vercel.app/" },
-      { label: "Repo", href: "https://github.com/emdanish/radiant-thought-scribe" },
+      { label: "Live demo", href: "https://radiantthought.vercel.app/" },
+      { label: "Source code", href: "https://github.com/emdanish/radiant-thought-scribe" },
     ],
     image: {
       src: "/images/projects/radiant-thought.png",
@@ -171,7 +173,7 @@ export const projects: readonly Project[] = [
     stack: ["Next.js", "React", "MongoDB", "Tailwind CSS"],
     links: [
       // facts.md: not live; only the repo link exists.
-      { label: "Repo", href: "https://github.com/emdanish75/blog-app-using-react-and-mongodb" },
+      { label: "Source code", href: "https://github.com/emdanish75/blog-app-using-react-and-mongodb" },
     ],
     image: {
       src: "/images/projects/blog-platform.png",
@@ -244,10 +246,25 @@ export const skillGroups: readonly SkillGroup[] = [
   { label: "Frontend", items: ["Next.js", "React", "TypeScript", "Tailwind CSS"] },
   {
     label: "Backend",
-    items: ["Node.js", "Express.js", "FastAPI (Python)", "REST", "GraphQL", "WebSockets"],
+    items: ["Node.js", "Express.js", "FastAPI (Python)", "REST", "GraphQL", "WebSockets", "LiveKit"],
   },
-  { label: "AI", items: ["Claude API", "Gemini API", "RAG", "Prompt engineering", "Streaming"] },
-  { label: "Data", items: ["PostgreSQL", "MongoDB", "MySQL", "Supabase", "pgvector"] },
+  {
+    label: "AI",
+    items: [
+      "Claude API",
+      "Gemini API",
+      "Mistral AI",
+      "AssemblyAI",
+      "CORE Research API",
+      "RAG",
+      "Prompt engineering",
+      "Streaming",
+    ],
+  },
+  {
+    label: "Data",
+    items: ["PostgreSQL", "MongoDB", "MySQL", "MariaDB", "Supabase", "Appwrite", "pgvector"],
+  },
   { label: "Practices", items: ["Git", "Docker", "CI/CD", "Vercel", "Code review", "Testing"] },
 ];
 
@@ -269,7 +286,7 @@ export const testimonials: readonly Testimonial[] = [];
 export const about: readonly string[] = [
   "I'm Muhammad Danish, a full-stack developer in Pakistan. I build AI products whole, from schema and API design through prompt pipelines and streaming interfaces to the deploy that ships them, and I care that the seams never show.",
   "The part I care about most is deciding what the product should refuse to do. Recruitimate scores candidates only on what they say in the transcript, never on their face or voice: a line we drew deliberately, in step with the EU AI Act. I wrote about that decision, and I'd draw the same line again.",
-  "Before Arken Systems, I made key page loads roughly 25% faster at RemoteFlow, built a multi-tenant EdTech platform at Baccalytics, and shipped a Spring Boot records system at Alabtaal Developers. I finished my BSCS at Air University in June 2026.",
+  "Before Arken Systems, I made key page loads meaningfully faster at RemoteFlow, built a multi-tenant EdTech platform at Baccalytics, and shipped a Spring Boot records system at Alabtaal Developers. I finished my BSCS at Air University in June 2026.",
 ];
 
 /** Site chrome and shared UI strings, kept here so copy lives in one file. */

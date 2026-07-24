@@ -68,6 +68,7 @@ export default function RecruitimateCaseStudy() {
                         className="text-sm text-ink normal-case"
                       >
                         {link.label}
+                        <span className="sr-only"> of {flagship.title}</span>
                       </ExternalLink>
                     ))}
                   </dd>
