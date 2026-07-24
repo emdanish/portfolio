@@ -63,7 +63,11 @@ export function FlagshipSpotlight() {
           <motion.div style={reduceMotion ? undefined : { y: drift }} className="lg:-my-7">
             {/* Below the fold: never priority/preload, or it contends with
                 the hero's critical requests. */}
-            <ProjectArt image={flagship.image} sizes="(min-width: 1024px) 40vw, 100vw" />
+            <ProjectArt
+              image={flagship.image}
+              title={flagship.title}
+              sizes="(min-width: 1024px) 40vw, 100vw"
+            />
           </motion.div>
           {!reduceMotion && (
             <motion.div

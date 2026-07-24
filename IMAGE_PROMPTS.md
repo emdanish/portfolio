@@ -64,9 +64,34 @@ letters, numbers, logos, or watermarks anywhere in the image.
 > magazine-illustration composition. Ink navy, amber, and deep charcoal palette
 > only. Absolutely no text, letters, numbers, logos, or UI elements.
 
+## 5. Zovo, `public/images/projects/zovo.png` (1920x1080)
+
+> Editorial flat-modern vector illustration, 1920x1080, 16:9. A single wide
+> switchboard console rendered in ink navy (#16324A) sits centered on a warm
+> paper background (#FAF8F5), its face carrying an ordered row of amber
+> (#F6C453) and navy toggles and dials. From the left and right edges, many
+> loose charcoal and navy threads drift inward, each thread carrying one
+> small flat marketing shape: a megaphone, a coin, an envelope, a bar chart,
+> a handshake. The threads meet the console and emerge beneath it woven into
+> one straight, tidy amber cord running off the bottom edge, many scattered
+> workflows becoming a single managed operation. Generous negative space,
+> subtle paper grain, minimal geometry, confident magazine-illustration
+> composition. Ink navy, amber, and deep charcoal palette only. Absolutely no
+> text, letters, numbers, logos, or UI elements.
+
+After placing the file at `public/images/projects/zovo.png`, replace
+`image: null` in the Zovo entry of `src/content.ts` with:
+
+```ts
+image: {
+  src: "/images/projects/zovo.png",
+  alt: "Editorial illustration for Zovo, the enterprise marketing platform: scattered campaign threads weaving into one ordered switchboard console.",
+},
+```
+
 ---
 
-## Optional 5. Abstract hero/about background texture, `public/images/texture-paper.png` (1920x1080)
+## Optional 6. Abstract hero/about background texture, `public/images/texture-paper.png` (1920x1080)
 
 Only generate this if you want an extra layer of warmth behind the hero; the
 site ships without it and does not reference it yet.

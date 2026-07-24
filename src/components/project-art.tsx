@@ -6,6 +6,7 @@ import type { Project } from "@/content";
 
 type ProjectArtProps = {
   image: Project["image"];
+  title: string;
   /** next/image responsive hint, set by the surface this art sits in. */
   sizes: string;
 };
@@ -14,9 +15,23 @@ type ProjectArtProps = {
  * Project artwork: soft fade-and-settle reveal as it scrolls into view, and
  * a gentle 1.02 scale when the parent `group` card is hovered. Both effects
  * are transform/opacity only and collapse under prefers-reduced-motion.
+ * While a project's artwork is null (not yet generated), a quiet solid block
+ * holds the slot so the layout never shows a broken image.
  */
-export function ProjectArt({ image, sizes }: ProjectArtProps) {
+export function ProjectArt({ image, title, sizes }: ProjectArtProps) {
   const reduceMotion = useReducedMotion();
+
+  if (image === null) {
+    return (
+      <div
+        role="img"
+        aria-label={`${title} artwork`}
+        className="flex aspect-video items-end border border-line bg-secondary p-5"
+      >
+        <span className="font-mono text-xs text-subtle">{title}</span>
+      </div>
+    );
+  }
 
   return (
     <div className="relative aspect-video overflow-hidden border border-line bg-secondary">

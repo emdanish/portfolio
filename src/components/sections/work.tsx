@@ -12,24 +12,27 @@ function ProjectCard({ project }: { project: Project }) {
     <article className="card-lift group flex h-full flex-col border border-line bg-surface">
       <ProjectArt
         image={project.image}
-        sizes="(min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw"
+        title={project.title}
+        sizes="(min-width: 640px) 50vw, 100vw"
       />
       <div className="flex grow flex-col gap-3 p-5">
         <h4 className="font-display text-title text-balance text-ink">{project.title}</h4>
         <p className="text-sm text-pretty">{project.oneLiner}</p>
         <StackTags items={project.stack} className="mt-auto pt-2" />
-        <div className="flex items-center gap-4 border-t border-line pt-3">
-          {project.links.map((link) => (
-            <ExternalLink
-              key={link.href}
-              href={link.href}
-              iconClassName="transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none"
-            >
-              {link.label}
-              <span className="sr-only">, {project.title}</span>
-            </ExternalLink>
-          ))}
-        </div>
+        {project.links.length > 0 && (
+          <div className="flex items-center gap-4 border-t border-line pt-3">
+            {project.links.map((link) => (
+              <ExternalLink
+                key={link.href}
+                href={link.href}
+                iconClassName="transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none"
+              >
+                {link.label}
+                <span className="sr-only">, {project.title}</span>
+              </ExternalLink>
+            ))}
+          </div>
+        )}
       </div>
     </article>
   );
@@ -45,13 +48,13 @@ export function Work() {
             <FlagshipSpotlight />
           </Reveal>
         </div>
-        <ul role="list" className="mt-20 grid list-none gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <ul role="list" className="mt-20 grid list-none gap-6 sm:grid-cols-2 lg:gap-8">
           {projects.map((project, i) => (
             <li
               key={project.slug}
-              // The middle card steps down at desktop, breaking the uniform
-              // grid into an editorial stagger.
-              className={cn("sm:last:col-span-2 lg:last:col-span-1", i === 1 && "lg:mt-12")}
+              // The right-hand column steps down at desktop, breaking the
+              // uniform grid into an editorial stagger.
+              className={cn(i % 2 === 1 && "lg:mt-12")}
             >
               <Reveal delay={i * 0.08} className="h-full">
                 <ProjectCard project={project} />
