@@ -27,9 +27,9 @@ never invent data. Missing values render as visible TODOs.
 Testimonials: `testimonials` in `src/content.ts` is empty by design. The
 section renders nothing until real quotes are added.
 
-Project artwork lives in `public/images/projects/` (1920x1080 editorial
-illustrations; the generation prompts are archived in
-[`IMAGE_PROMPTS.md`](IMAGE_PROMPTS.md) for future regeneration).
+Project artwork lives in `public/images/projects/` as 1920x1080 editorial
+illustrations, one per project, referenced from each project's `image` entry
+in `src/content.ts`.
 
 ## Local development
 
@@ -45,10 +45,7 @@ Other commands:
 ```bash
 npm run build   # production build (all routes static)
 npm run lint    # eslint, zero warnings expected
-node scripts/generate-assets.mjs   # regenerate favicons, OG image, photo crops
-node scripts/screenshots.mjs <url> <outdir>   # QA screenshots (system Chrome)
-node scripts/scrollspy-test.mjs <url>         # nav hash-sync functional check
-node scripts/a11y-test.mjs <url>              # reduced-motion + focus check
+node scripts/generate-assets.mjs   # regenerate favicons, OG image, photo crop
 ```
 
 `scripts/generate-assets.mjs` derives every identity asset from `Picture.jpg`
@@ -85,9 +82,9 @@ src/
                         about, testimonials (empty-safe), contact
     ui/                 shadcn primitives (button)
     …                   nav, footer, shared editorial primitives
-  images/               statically imported photo crops (generated)
-scripts/                asset generation + QA scripts
-public/                 favicons, OG image, CV, project artwork slots
+  images/               statically imported photo crop (generated)
+scripts/                asset generation
+public/                 favicons, OG image, CV, project artwork
 ```
 
 Motion is budgeted to three signature moments (hero stagger, flagship

@@ -130,8 +130,10 @@ export const projects: readonly Project[] = [
     stack: ["Next.js", "React", "TypeScript", "Appwrite", "MariaDB", "Docker"],
     // facts.md: internal enterprise platform; no live URL, repo private.
     links: [],
-    // Pending artwork at /images/projects/zovo.png (see IMAGE_PROMPTS.md).
-    image: null,
+    image: {
+      src: "/images/projects/zovo.png",
+      alt: "Editorial illustration for Zovo, the enterprise marketing platform: scattered campaign threads carrying megaphones, coins, and charts weaving into one ordered switchboard console.",
+    },
   },
   {
     slug: "fyp-idea-generator",
