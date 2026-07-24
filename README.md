@@ -52,7 +52,7 @@ node scripts/a11y-test.mjs <url>              # reduced-motion + focus check
 ```
 
 `scripts/generate-assets.mjs` derives every identity asset from `Picture.jpg`
-plus the design tokens: the About/nav photo crops (`src/images/`), the MD
+plus the design tokens: the About photo crop (`src/images/`), the MD
 monogram favicons (`public/`, `src/app/favicon.ico`), the 1200x630 Open
 Graph card (`public/og.png`), and the paper-grain mask tile
 (`public/noise.png`).

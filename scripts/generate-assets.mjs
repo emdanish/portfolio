@@ -1,6 +1,6 @@
 /**
  * Generates every derived visual asset for the site from two inputs:
- *   - Picture.jpg (repo root)  -> editorial 4:5 about crop + square avatar
+ *   - Picture.jpg (repo root)  -> editorial 4:5 About crop
  *   - the design system        -> MD monogram favicons + Open Graph image
  *
  * Text is converted to real glyph outlines with fontkit (Fraunces for the
@@ -152,17 +152,6 @@ async function generatePortraits() {
     .jpeg({ quality: 88, mozjpeg: true })
     .toFile(path.join(outDir, "portrait-about.jpg"));
   console.log(`portrait-about.jpg: ${aboutW}x${aboutH} (4:5)`);
-
-  // Tight square crop around the face for the nav/footer avatar.
-  const side = Math.round(W * 0.62);
-  const left = Math.round(W * 0.19);
-  const top = Math.round(H * 0.06);
-  await sharp(src)
-    .extract({ left, top, width: side, height: side })
-    .resize(512, 512)
-    .jpeg({ quality: 88, mozjpeg: true })
-    .toFile(path.join(outDir, "avatar.jpg"));
-  console.log("avatar.jpg: 512x512");
 }
 
 await mkdir(PUBLIC, { recursive: true });

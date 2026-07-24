@@ -10,7 +10,7 @@
 - Location: Pakistan (open to remote worldwide)
 - Availability: Open to full-time roles and freelance projects
 - Email: muhammadd03@gmail.com
-- GitHub: https://github.com/emdanish75
+- GitHub: https://github.com/emdanish
 - LinkedIn: https://www.linkedin.com/in/emdanish
 - Current portfolio being replaced: https://emdanish.vercel.app
 - New domain if purchased, otherwise leave blank: not purchased
@@ -38,7 +38,17 @@
 - Repo URL: private
 - Image file: public/images/projects/recruitimate.png
 
-### 2. FYP Idea Generator
+### 2. Zovo
+
+- One-liner: An enterprise marketing and campaign management platform where agencies run influencer campaigns, digital advertising, and finance workflows from a single dashboard.
+- My role: Full-stack developer at Arken Systems, Feb 2026 to Present; built, secured, and tested production features.
+- Build: Next.js 15 App Router frontend with React 19 and TypeScript; Next.js API routes on Node.js; Appwrite (authentication, storage) with MariaDB; role-based access control across roughly 10 user roles; Meta Ads OAuth integration; security hardening covering CSRF, stored XSS, IDOR prevention, and token encryption; a 16-batch automated testing process that identified 93 findings, all resolved with zero regressions before production readiness.
+- Stack tags: Next.js, React, TypeScript, Appwrite, MariaDB, Docker
+- Live URL: none (internal enterprise platform)
+- Repo URL: private
+- Image file: public/images/projects/zovo.png
+
+### 3. FYP Idea Generator
 
 - One-liner: A research-grounded idea engine that generates final year project ideas backed by real academic literature.
 - Problem: Students pick recycled FYP ideas they cannot defend with citations.
@@ -48,7 +58,7 @@
 - Repo URL: https://github.com/emdanish/fyp-idea-generator
 - Image file: public/images/projects/fyp-idea-generator.png
 
-### 3. Radiant Thought
+### 4. Radiant Thought
 
 - One-liner: An AI journaling app that turns entries into reflective insight.
 - Build: Supabase authentication and storage; Gemini API generates entry titles and reflections covering themes, thought patterns, and values alignment; structured prompts return consistent JSON so the analysis renders cleanly; responsive interactive UI in React, TypeScript, Tailwind CSS.
@@ -57,7 +67,7 @@
 - Repo URL: https://github.com/emdanish/radiant-thought-scribe
 - Image file: public/images/projects/radiant-thought.png
 
-### 4. Blog Platform
+### 5. Blog Platform
 
 - One-liner: A full-stack publishing platform with an admin CMS.
 - Build: Category-based post exploration, email subscriptions, social sharing, and an admin panel; API routes on the Node.js runtime with MongoDB persistence.

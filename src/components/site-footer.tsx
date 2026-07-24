@@ -1,3 +1,4 @@
+import { Monogram } from "@/components/monogram";
 import { currently, identity, ui } from "@/content";
 
 export function SiteFooter() {
@@ -8,12 +9,7 @@ export function SiteFooter() {
       </div>
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-8 gap-y-4">
         <p className="flex items-center gap-3">
-          <span
-            aria-hidden="true"
-            className="flex size-8 items-center justify-center bg-amber font-display text-sm font-semibold text-ink-on-amber"
-          >
-            {identity.monogram}
-          </span>
+          <Monogram decorative />
           <span className="font-mono text-xs text-subtle">
             © {new Date().getFullYear()} {identity.name}
           </span>

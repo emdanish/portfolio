@@ -1,15 +1,14 @@
 "use client";
 
-import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { Button } from "@/components/ui/button";
+import { Monogram } from "@/components/monogram";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { identity, ui } from "@/content";
 import { cn } from "@/lib/utils";
-import avatar from "@/images/avatar.jpg";
 
 // "intro" is the hero: while it holds the eyeline band no section is active
 // and the hash is cleared.
@@ -114,16 +113,12 @@ export function SiteNav() {
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-paper pr-[max(--spacing(5),env(safe-area-inset-right))] pl-[max(--spacing(5),env(safe-area-inset-left))]">
       <nav aria-label="Main" className="mx-auto flex h-16 max-w-6xl items-center justify-between">
-        <a href="#top" className="flex items-center gap-3" onClick={() => setMenuOpen(false)}>
-          <Image
-            src={avatar}
-            alt=""
-            width={28}
-            height={28}
-            className="size-7 rounded-full border border-line"
-            priority
-          />
-          <span className="font-display text-lg font-semibold text-ink">{identity.monogram}</span>
+        <a
+          href="#top"
+          onClick={() => setMenuOpen(false)}
+          className="inline-flex shrink-0 items-center transition-opacity hover:opacity-80 motion-reduce:transition-none"
+        >
+          <Monogram />
           <span className="sr-only">{identity.name}, back to top</span>
         </a>
 

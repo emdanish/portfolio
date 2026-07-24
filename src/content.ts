@@ -22,7 +22,7 @@ export const identity = {
   location: "Pakistan (open to remote worldwide)",
   availability: "Open to full-time roles and freelance projects",
   email: "muhammadd03@gmail.com",
-  github: "https://github.com/emdanish75",
+  github: "https://github.com/emdanish",
   linkedin: "https://www.linkedin.com/in/emdanish",
   /** Portfolio this site replaces; used only as canonical-domain fallback. */
   previousSite: "https://emdanish.vercel.app",
@@ -59,7 +59,9 @@ export type Project = {
   stack: readonly string[];
   /** Only links that exist in facts.md. Private repos / non-live apps are omitted. */
   links: readonly ProjectLink[];
-  image: { src: string; alt: string };
+  /** null while the artwork is still being generated: the card renders a
+   *  quiet solid block instead of a broken image. */
+  image: { src: string; alt: string } | null;
 };
 
 export const flagship = {
@@ -120,6 +122,17 @@ export const flagship = {
 } as const;
 
 export const projects: readonly Project[] = [
+  {
+    slug: "zovo",
+    title: "Zovo",
+    oneLiner:
+      "An enterprise marketing and campaign management platform where agencies run influencer campaigns, digital advertising, and finance workflows from a single dashboard.",
+    stack: ["Next.js", "React", "TypeScript", "Appwrite", "MariaDB", "Docker"],
+    // facts.md: internal enterprise platform; no live URL, repo private.
+    links: [],
+    // Pending artwork at /images/projects/zovo.png (see IMAGE_PROMPTS.md).
+    image: null,
+  },
   {
     slug: "fyp-idea-generator",
     title: "FYP Idea Generator",
@@ -275,7 +288,7 @@ export const ui = {
 
 /** Section mastheads and editorial framing copy (UI voice, not facts). */
 export const sections = {
-  work: { eyebrow: "Selected Work", title: "Recruitimate, and three more." },
+  work: { eyebrow: "Selected Work", title: "Recruitimate, and four more." },
   writing: {
     eyebrow: "Writing",
     title: "Notes from the build.",
