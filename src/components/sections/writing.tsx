@@ -19,7 +19,12 @@ export function Writing() {
             rel="noopener noreferrer"
             className="card-lift group block border border-line bg-surface p-8 sm:p-12 lg:p-16"
           >
-            <p className="font-mono text-xs text-subtle uppercase">Essay · {writing.outlet}</p>
+            <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+              <p className="font-mono text-xs text-subtle uppercase">Essay · {writing.outlet}</p>
+              <p className="font-mono text-xs text-subtle uppercase">
+                {writing.published} · {writing.readingTime}
+              </p>
+            </div>
             <h3 className="mt-6 max-w-3xl font-display text-display text-balance text-ink">
               {writing.title}
             </h3>

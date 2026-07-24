@@ -165,6 +165,9 @@ export const writing = {
     "Why our AI interviewer scores only what candidates say, the thousand-study review behind that decision, and why the EU now bans what half the industry was selling.",
   href: "https://www.linkedin.com/pulse/we-taught-our-hiring-ai-ignore-your-face-muhammad-danish-panuf/",
   outlet: "LinkedIn",
+  published: "24 July 2026",
+  /** The article runs about 1,550 words; roughly 225 wpm. */
+  readingTime: "7 min read",
 } as const;
 
 export type Role = {

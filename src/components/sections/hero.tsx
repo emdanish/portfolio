@@ -95,10 +95,13 @@ export function Hero() {
           <Button asChild size="lg" variant="outline">
             <a href={`mailto:${identity.email}`}>{ui.cta.primary}</a>
           </Button>
+        </motion.div>
+
+        <motion.div variants={rise} className="mt-5">
           <CopyEmailButton />
         </motion.div>
 
-        <motion.p variants={rise} className="mt-14 font-mono text-xs text-subtle">
+        <motion.p variants={rise} className="mt-12 font-mono text-xs text-subtle">
           {identity.location}
         </motion.p>
       </motion.div>
