@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Muhammad Danish — Portfolio
 
-## Getting Started
+A minimal-editorial personal site for a full-stack developer building AI
+products. Single page (`/`) with anchored sections plus a flagship case study
+at `/recruitimate`. Fully static, deployed on Vercel.
 
-First, run the development server:
+**Design system:** warm paper `#FAF8F5` · ink navy `#16324A` · one amber
+accent `#F6C453` · Fraunces (display) + Schibsted Grotesk (body) +
+JetBrains Mono (labels). Dark mode inverts to near-black navy paper with the
+same amber, toggled via `next-themes` (light default).
+
+## Stack
+
+Next.js (App Router, TypeScript strict) · Tailwind CSS v4 · shadcn/ui
+primitives · Motion (`motion/react`) · Lucide · next/font · next-themes.
+
+## Content lives in one file
+
+**All copy, links, metrics, and project data live in
+[`src/content.ts`](src/content.ts)**, transcribed from
+[`facts.md`](facts.md) (which wins over the CV on any conflict). To change
+anything on the site, edit `facts.md`, mirror it in `src/content.ts`, and
+never invent data — missing values render as visible TODOs.
+
+Testimonials: `testimonials` in `src/content.ts` is empty by design. The
+section renders nothing until real quotes are added.
+
+Project artwork: `image.available` is `false` per project until the file in
+`public/images/projects/` exists (prompts in
+[`IMAGE_PROMPTS.md`](IMAGE_PROMPTS.md)). Flip `available: true` once a file
+is in place.
+
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Other commands:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build   # production build (all routes static)
+npm run lint    # eslint — zero warnings expected
+node scripts/generate-assets.mjs   # regenerate favicons, OG image, photo crops
+node scripts/screenshots.mjs <url> <outdir>   # QA screenshots (system Chrome)
+node scripts/scrollspy-test.mjs <url>         # nav hash-sync functional check
+node scripts/a11y-test.mjs <url>              # reduced-motion + focus check
+```
 
-## Learn More
+`scripts/generate-assets.mjs` derives every identity asset from `Picture.jpg`
+plus the design tokens: the About/nav photo crops (`src/images/`), the MD
+monogram favicons (`public/`, `src/app/favicon.ico`), and the 1200x630 Open
+Graph card (`public/og.png`).
 
-To learn more about Next.js, take a look at the following resources:
+## Deploying to Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Push this repository to GitHub.
+2. In Vercel: **Add New → Project**, import the repo. Framework preset:
+   Next.js — no configuration needed, defaults are correct.
+3. Set one environment variable (Production):
+   `NEXT_PUBLIC_SITE_URL` = the site's canonical origin, e.g.
+   `https://emdanish.vercel.app` (no trailing slash). Metadata, sitemap,
+   robots, and JSON-LD all derive from it; without it, the fallback in
+   `src/lib/site.ts` is used.
+4. Deploy. Then verify: the OG card via https://www.opengraph.xyz (or
+   X/LinkedIn share debuggers), `/sitemap.xml`, `/robots.txt`, and the
+   `/Muhammad-Danish-CV.pdf` download.
+5. When a custom domain is purchased, add it in Vercel → Domains and update
+   `NEXT_PUBLIC_SITE_URL` to match, then redeploy.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Structure
 
-## Deploy on Vercel
+```
+src/
+  content.ts            single source of truth for all site content
+  app/                  layout (fonts, metadata, theme), page, /recruitimate,
+                        robots.ts, sitemap.ts, globals.css (design tokens)
+  components/
+    sections/           hero, work, flagship-spotlight, writing, experience,
+                        about, testimonials (empty-safe), contact
+    ui/                 shadcn primitives (button)
+    …                   nav, footer, shared editorial primitives
+  images/               statically imported photo crops (generated)
+scripts/                asset generation + QA scripts
+public/                 favicons, OG image, CV, project artwork slots
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Motion is budgeted to three signature moments — hero stagger, flagship
+spotlight/parallax, scroll fade-ups — plus quiet hovers, all
+compositor-only and disabled under `prefers-reduced-motion`.
