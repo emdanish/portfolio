@@ -89,5 +89,5 @@ production build; `npm run lint` should always report zero warnings.
 
 Deployed on Vercel with the default Next.js preset. One environment variable
 matters: `NEXT_PUBLIC_SITE_URL`, the canonical origin (for example
-`https://emdanish.vercel.app`, no trailing slash), which metadata, the
+`https://emdanish.dev`, no trailing slash), which metadata, the
 sitemap, robots, and JSON-LD all derive from.
