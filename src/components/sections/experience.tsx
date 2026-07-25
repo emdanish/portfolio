@@ -61,7 +61,15 @@ export function Experience() {
             <div className="sm:col-span-9">
               <h3 className="font-display text-title text-balance text-ink">
                 {education.degree} <span aria-hidden="true">·</span>{" "}
-                <span className="text-subtle">{education.school}</span>
+                <a
+                  href={education.schoolUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-underline text-subtle transition-colors hover:text-ink"
+                >
+                  {education.school}
+                  <span className="sr-only"> (university website, opens in a new tab)</span>
+                </a>
               </h3>
               <p className="mt-2 font-mono text-xs text-subtle uppercase">
                 {education.period} · <span className="tabular-nums">{education.detail}</span>

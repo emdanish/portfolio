@@ -240,6 +240,7 @@ export const experience: readonly Role[] = [
 
 export const education = {
   school: "Air University",
+  schoolUrl: "https://www.au.edu.pk/",
   degree: "BS Computer Science (BSCS)",
   period: "Sep 2022 to Jun 2026",
   detail: "CGPA 3.59",

@@ -94,6 +94,7 @@
 ## Education
 
 - Air University, BS Computer Science (BSCS), Sep 2022 - Jun 2026, CGPA 3.59
+- University link (the school name on the site links out to this): https://www.au.edu.pk/
 
 ## Skills to display (keep grouped and visually quiet, no percentage bars ever)
 
