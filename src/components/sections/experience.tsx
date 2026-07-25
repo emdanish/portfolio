@@ -32,7 +32,15 @@ export function Experience() {
                   <div className="sm:col-span-9">
                     <h3 className="font-display text-title text-balance text-ink">
                       {role.title} <span aria-hidden="true">·</span>{" "}
-                      <span className="text-subtle">{role.company}</span>
+                      <a
+                        href={role.companyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="link-underline text-subtle transition-colors hover:text-ink"
+                      >
+                        {role.company}
+                        <span className="sr-only"> (company website, opens in a new tab)</span>
+                      </a>
                     </h3>
                     <p className="mt-2 max-w-2xl text-pretty">{role.summary}</p>
                   </div>

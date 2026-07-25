@@ -195,6 +195,8 @@ export const writing = {
 
 export type Role = {
   company: string;
+  /** Company website (or LinkedIn page where no site exists), from facts.md. */
+  companyUrl: string;
   title: string;
   /** Mono-font display dates, verbatim from facts.md. */
   period: string;
@@ -204,6 +206,7 @@ export type Role = {
 export const experience: readonly Role[] = [
   {
     company: "Arken Systems",
+    companyUrl: "https://arkensystems.com/",
     title: "Junior Software Engineer",
     period: "Feb 2026 to Present",
     summary:
@@ -211,6 +214,7 @@ export const experience: readonly Role[] = [
   },
   {
     company: "RemoteFlow",
+    companyUrl: "https://remoteflow.io/",
     title: "Frontend Engineer",
     period: "Feb 2025 to Jun 2026",
     summary:
@@ -218,6 +222,7 @@ export const experience: readonly Role[] = [
   },
   {
     company: "Baccalytics",
+    companyUrl: "https://baccalytics.com/",
     title: "Full Stack Developer",
     period: "Jun 2025 to Sep 2025",
     summary:
@@ -225,6 +230,7 @@ export const experience: readonly Role[] = [
   },
   {
     company: "Alabtaal Developers",
+    companyUrl: "https://www.linkedin.com/company/al-abtaal",
     title: "Junior Software Developer",
     period: "May 2024 to Dec 2024",
     summary:

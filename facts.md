@@ -89,6 +89,7 @@
 - RemoteFlow, Frontend Engineer, Feb 2025 - Jun 2026. Responsive, reusable UI in Next.js, React, TypeScript, and GraphQL for an AI-powered job automation platform; cut key page load times by ~25%.
 - Baccalytics, Full Stack Developer, Jun 2025 - Sep 2025. Multi-tenant EdTech platform for IB schools on Next.js and Supabase, with role-based access control and core LMS features.
 - Alabtaal Developers, Junior Software Developer, May 2024 - Dec 2024. Records management and reporting system in Java Spring Boot; Docker deployment, Jira, agile workflow.
+- Company links (company names on the site link out to these): Arken Systems https://arkensystems.com/, RemoteFlow https://remoteflow.io/, Baccalytics https://baccalytics.com/, Alabtaal Developers https://www.linkedin.com/company/al-abtaal
 
 ## Education
 
