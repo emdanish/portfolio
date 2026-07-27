@@ -5,7 +5,7 @@
 ## Identity
 
 - Name: Muhammad Danish
-- Role headline: Full-Stack Developer, AI-Powered Applications
+- Role headline: Full Stack Developer, Indie Hacker, Founder (building developer-focused SaaS products)
 - Hero statement (may be typographically split across lines): I build AI products end to end, and I care about what they refuse to do.
 - Location: Pakistan (open to remote worldwide)
 - Availability: Open to full-time roles and freelance projects
@@ -25,7 +25,23 @@
 
 ## Projects (display order)
 
-### 1. Recruitimate (flagship case study, gets the largest treatment)
+### 1. Variorum (flagship, founder project, gets the largest treatment on the site)
+
+- One-liner: An AI-powered engineering memory layer for GitHub repositories. It preserves the knowledge around your code, the decisions, the history, and the reasoning, so context does not disappear when engineers move on.
+- My role: Founder and builder.
+- Problem: Code is version-controlled, but the reasoning behind it is not. Why a decision was made, why a workaround exists, which docs are stale, and what is risky to touch all live in people's heads, scattered commits, and old pull requests. That knowledge erodes as teams grow and people leave.
+- Why it exists: built because I kept hitting this problem myself; joining an unfamiliar codebase, the code and git history were there but the why was gone.
+- Who it is for: software teams and individual developers maintaining codebases that outlive the people who wrote them; onboarding, code review, and safe refactoring are the core moments.
+- How it works: install a GitHub App on a repository; Variorum indexes the code, docs, and history; then ask how something works and get a cited answer, plan a change and see what it affects, get automatic insight on every pull request, and receive a weekly health digest in Slack.
+- Core capabilities: plain-English answers grounded in code/docs/PRs with citations to exact lines; change planning with per-file risk, ownership, and missing tests; documentation drift detection that opens fix PRs with evidence; PR risk scoring with untested scenarios; PR briefings plus weekly Slack digests and alerts; portfolio and expertise views of knowledge health and ownership.
+- Philosophy: coding assistants write the next line; Variorum understands the code that already exists and keeps that knowledge alive. One rule: Variorum proposes, humans decide. It never auto-merges and never force-pushes.
+- Stack (themed clusters): Frontend Next.js App Router, React, TypeScript strict, Tailwind CSS; Backend FastAPI, Python, Pydantic, SQLAlchemy, Alembic; Data PostgreSQL with full-text search and optional pgvector; Code understanding tree-sitter; AI architecture provider-agnostic layer over Gemini, DeepSeek, Perplexity with automatic fallback and hybrid keyword plus semantic retrieval; Integration GitHub App with least-privilege per-installation tokens and verified webhooks.
+- The hard part: turning a whole repository into something a model can reason about reliably, and citing every claim back to a source.
+- Live URL: https://variorum.dev
+- Repo URL: https://github.com/emdanish/variorum
+- Image file: public/images/projects/variorum.png (cover image, provided separately)
+
+### 2. Recruitimate (featured case study)
 
 - One-liner: An AI-native hiring platform that screens resumes, runs structured interviews, and scores candidates on what they actually say.
 - My role: Core engineer at Arken Systems, owning features end to end.
@@ -38,7 +54,7 @@
 - Repo URL: private
 - Image file: public/images/projects/recruitimate.png
 
-### 2. Zovo
+### 3. Zovo
 
 - One-liner: An enterprise marketing and campaign management platform where agencies run influencer campaigns, digital advertising, and finance workflows from a single dashboard.
 - My role: Full-stack developer at Arken Systems, Feb 2026 to Present; built, secured, and tested production features.
@@ -48,7 +64,7 @@
 - Repo URL: private
 - Image file: public/images/projects/zovo.png
 
-### 3. FYP Idea Generator
+### 4. FYP Idea Generator
 
 - One-liner: A research-grounded idea engine that generates final year project ideas backed by real academic literature.
 - Problem: Students pick recycled FYP ideas they cannot defend with citations.
@@ -58,7 +74,7 @@
 - Repo URL: https://github.com/emdanish/fyp-idea-generator
 - Image file: public/images/projects/fyp-idea-generator.png
 
-### 4. Radiant Thought
+### 5. Radiant Thought
 
 - One-liner: An AI journaling app that turns entries into reflective insight.
 - Build: Supabase authentication and storage; Gemini API generates entry titles and reflections covering themes, thought patterns, and values alignment; structured prompts return consistent JSON so the analysis renders cleanly; responsive interactive UI in React, TypeScript, Tailwind CSS.
@@ -67,7 +83,7 @@
 - Repo URL: https://github.com/emdanish/radiant-thought-scribe
 - Image file: public/images/projects/radiant-thought.png
 
-### 5. Blog Platform
+### 6. Blog Platform
 
 - One-liner: A full-stack publishing platform with an admin CMS.
 - Build: Category-based post exploration, email subscriptions, social sharing, and an admin panel; API routes on the Node.js runtime with MongoDB persistence.

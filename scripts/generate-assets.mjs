@@ -85,7 +85,7 @@ function ogSvg(fraunces, mono) {
   const H = 630;
   const M = 84; // left margin
   const name = textPath(fraunces, "Muhammad Danish", 92, { wght: 600, opsz: 144, SOFT: 0, WONK: 0 });
-  const role = textPath(mono, "FULL-STACK DEVELOPER · AI-POWERED APPLICATIONS", 25, { wght: 500 });
+  const role = textPath(mono, "FULL STACK DEVELOPER · INDIE HACKER · FOUNDER", 25, { wght: 500 });
   const line1 = textPath(fraunces, "I build AI products end to end,", 40, { wght: 420, opsz: 40, SOFT: 0, WONK: 0 });
   const line2 = textPath(fraunces, "and I care about what they refuse to do.", 40, { wght: 420, opsz: 40, SOFT: 0, WONK: 0 });
   const md = textPath(fraunces, "MD", 42, { wght: 560, opsz: 144, SOFT: 0, WONK: 0 });

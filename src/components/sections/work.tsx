@@ -3,7 +3,8 @@ import { ProjectArt } from "@/components/project-art";
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
 import { StackTags } from "@/components/stack-tags";
-import { FlagshipSpotlight } from "@/components/sections/flagship-spotlight";
+import { RecruitimateFeature } from "@/components/sections/recruitimate-feature";
+import { VariorumSpotlight } from "@/components/sections/variorum-spotlight";
 import { projects, sections, type Project } from "@/content";
 import { cn } from "@/lib/utils";
 
@@ -45,7 +46,12 @@ export function Work() {
         <SectionHeading eyebrow={sections.work.eyebrow} title={sections.work.title} number="01" />
         <div className="mt-16">
           <Reveal>
-            <FlagshipSpotlight />
+            <VariorumSpotlight />
+          </Reveal>
+        </div>
+        <div className="mt-20">
+          <Reveal>
+            <RecruitimateFeature />
           </Reveal>
         </div>
         <ul role="list" className="mt-20 grid list-none gap-6 sm:grid-cols-2 lg:gap-8">

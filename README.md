@@ -1,9 +1,9 @@
 # Muhammad Danish · Portfolio
 
-The personal site of **Muhammad Danish**, a full-stack developer building
-AI-powered applications end to end with Next.js, TypeScript, FastAPI,
-PostgreSQL, and the Claude and Gemini APIs. Open to full-time roles and
-freelance projects.
+The personal site of **Muhammad Danish**, a full stack developer, indie
+hacker, and founder building developer-focused SaaS products. Founder of
+[Variorum](https://variorum.dev), an AI-powered engineering memory layer for
+GitHub repositories. Open to full-time roles and freelance projects.
 
 **Live site:** [emdanish.dev](https://emdanish.dev) ·
 **Email:** [muhammadd03@gmail.com](mailto:muhammadd03@gmail.com) ·
@@ -13,11 +13,14 @@ freelance projects.
 ## What's on the site
 
 A single editorial page (hero, selected work, writing, experience, about,
-contact) plus a full case study at `/recruitimate` on Recruitimate, an
-AI-native hiring platform that scores candidates strictly on what they say in
-interview transcripts, never on their face or voice. The Writing section
-links the essay behind that decision: *We Taught Our Hiring AI to Ignore
-Your Face*.
+contact) plus two full case studies. `/variorum` covers Variorum, the
+flagship founder project: an engineering memory layer that preserves the
+decisions, history, and reasoning around code, answers questions with
+citations, and follows one rule, Variorum proposes and humans decide.
+`/recruitimate` covers Recruitimate, an AI-native hiring platform that
+scores candidates strictly on what they say in interview transcripts, never
+on their face or voice. The Writing section links the essay behind that
+decision: *We Taught Our Hiring AI to Ignore Your Face*.
 
 ## Design
 

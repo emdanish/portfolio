@@ -11,7 +11,7 @@ export const identity = {
   name: "Muhammad Danish",
   /** Short monogram used for the favicon, nav mark, and footer. */
   monogram: "MD",
-  role: "Full-Stack Developer, AI-Powered Applications",
+  role: "Full Stack Developer · Indie Hacker · Founder",
   /** facts.md allows splitting this typographically across lines. */
   heroStatement: [
     "I build AI products end to end,",
@@ -45,12 +45,12 @@ export const identity = {
 export const metrics = [
   { value: 25, prefix: "~", suffix: "%", label: "reduction in key page load times at RemoteFlow" },
   { value: 5, prefix: "~", suffix: " hrs", label: "saved weekly by automation workflows" },
-  { value: 5, prefix: "0", suffix: "", label: "production projects" },
+  { value: 6, prefix: "0", suffix: "", label: "production projects" },
 ] as const;
 
-/** Status line for the footer. Sources: the Arken roles (Recruitimate, Zovo) and the essay. */
+/** Status line for the footer. Sources: Variorum, the Arken roles, and the essay. */
 export const currently =
-  "Currently: building Recruitimate and Zovo at Arken Systems, and writing about responsible AI.";
+  "Currently: building Variorum, my engineering memory layer for GitHub, shipping Recruitimate and Zovo at Arken Systems, and writing about responsible AI.";
 
 export type ProjectLink = { label: string; href: string };
 
@@ -66,7 +66,93 @@ export type Project = {
   image: { src: string; alt: string } | null;
 };
 
-export const flagship = {
+/**
+ * Variorum, the flagship founder project. Gets the largest treatment on the
+ * homepage and its own case study at /variorum. All copy traces to the
+ * Variorum brief recorded in facts.md.
+ */
+export const variorum = {
+  slug: "variorum",
+  title: "Variorum",
+  headline: "The memory your codebase never had.",
+  oneLiner:
+    "An AI-powered engineering memory layer for GitHub repositories. It preserves the decisions, the history, and the reasoning around your code, so context does not disappear when engineers move on.",
+  role: "Founder and builder.",
+  problem:
+    "Code is version-controlled. The reasoning behind it is not. Why a decision was made, why a workaround exists, which docs are stale, and what is risky to touch all live in people's heads, scattered commits, and old pull requests. That knowledge erodes as teams grow and people leave, and new engineers lose days rebuilding context that used to exist.",
+  why:
+    "I built Variorum because I kept hitting this problem myself. Joining an unfamiliar codebase, the code and the git history were always there, but the why was gone. Variorum is my attempt to make that reasoning durable and queryable.",
+  how:
+    "Install the GitHub App on a repository and Variorum indexes the code, docs, and history. From there you can ask how something works and get a cited answer, plan a change and see what it will affect, and get automatic insight on every pull request, with a weekly health digest in Slack.",
+  audience:
+    "It is built for teams and individual developers who maintain codebases that outlive the people who wrote them. Onboarding, code review, and safe refactoring are the moments it targets.",
+  highlights: [
+    {
+      title: "Cited answers from your real codebase",
+      body: "Ask in plain English and get an answer grounded in the actual code, docs, and pull requests, with citations that link to the exact lines and PRs.",
+    },
+    {
+      title: "Change-risk analysis before you code",
+      body: "Plan a change and see the files it touches, how risky each one is, who owns it, and which tests are missing.",
+    },
+    {
+      title: "Docs that fix themselves",
+      body: "When documentation drifts from the code, Variorum detects it and opens a fix pull request with the evidence attached.",
+    },
+    {
+      title: "Insight where you already work",
+      body: "Risk-scored briefings on every pull request, untested scenarios surfaced, and a weekly health digest in Slack.",
+    },
+  ],
+  rule: "Variorum proposes, humans decide.",
+  philosophy:
+    "Coding assistants help you write the next line. Variorum understands the code that already exists and keeps that knowledge alive. It does not generate your features; it builds the cited memory around them and surfaces it when you need it. It never auto-merges and never force-pushes.",
+  hardPart:
+    "The hard part was the AI engineering: turning a whole repository into something a model can reason about reliably, and citing every claim back to a source.",
+  retrieval:
+    "Retrieval is a hybrid of keyword and semantic search over embeddings, blending code, docs, and engineering history into one cited answer. The emphasis is on grounding and reducing hallucination, not just calling an LLM.",
+  stackClusters: [
+    {
+      label: "Frontend",
+      stack: "Next.js (App Router), React, TypeScript strict, Tailwind CSS",
+      reason: "a fast, typed, product-grade dashboard",
+    },
+    {
+      label: "Backend",
+      stack: "FastAPI, Python, Pydantic, SQLAlchemy, Alembic",
+      reason: "async IO-heavy AI and GitHub workloads with typed models and real migrations",
+    },
+    {
+      label: "Data",
+      stack: "PostgreSQL, full-text search, optional pgvector",
+      reason: "hybrid retrieval today, semantic search at scale when it is needed",
+    },
+    {
+      label: "Code understanding",
+      stack: "tree-sitter",
+      reason: "a real structural map of files, functions, and classes instead of fragile regex",
+    },
+    {
+      label: "AI architecture",
+      stack: "Provider-agnostic layer over Gemini, DeepSeek, and Perplexity",
+      reason: "automatic fallback, so one outage or quota limit never breaks the product",
+    },
+    {
+      label: "Integration",
+      stack: "GitHub App",
+      reason: "least-privilege, per-installation tokens and verified webhooks",
+    },
+  ],
+  links: {
+    live: { label: "Visit variorum.dev", href: "https://variorum.dev" },
+    source: { label: "Source code", href: "https://github.com/emdanish/variorum" },
+  },
+  caseStudyPath: "/variorum",
+  /** Cover image slot; wired in once the user provides the file. */
+  image: null as { src: string; alt: string } | null,
+} as const;
+
+export const recruitimate = {
   slug: "recruitimate",
   title: "Recruitimate",
   oneLiner:
@@ -291,9 +377,9 @@ export const testimonials: readonly Testimonial[] = [];
  * free of sentences that also appear in the Selected Work section.
  */
 export const about: readonly string[] = [
-  "I'm Muhammad Danish, a full-stack developer in Pakistan. I build AI products whole, from schema and API design through prompt pipelines and streaming interfaces to the deploy that ships them, and I care that the seams never show.",
-  "The part I care about most is deciding what the product should refuse to do. Recruitimate scores candidates only on what they say in the transcript, never on their face or voice: a line we drew deliberately, in step with the EU AI Act. I wrote about that decision, and I'd draw the same line again.",
-  "Before Arken Systems, I made key page loads meaningfully faster at RemoteFlow, built a multi-tenant EdTech platform at Baccalytics, and shipped a Spring Boot records system at Alabtaal Developers. I finished my BSCS at Air University in June 2026.",
+  "I'm Muhammad Danish, a full stack developer and indie hacker in Pakistan. I build developer-focused SaaS products whole, from schema and API design through prompt pipelines and streaming interfaces to the deploy that ships them. Variorum, my engineering memory layer for GitHub repositories, is where all of that comes together; I'm its founder and builder.",
+  "The part I care about most is deciding what a product should refuse to do. Recruitimate scores candidates only on what they say in the transcript, never on their face or voice, in step with the EU AI Act. Variorum reviews, explains, and opens pull requests, but merging stays a human decision. I wrote about this thinking, and I keep drawing the same line.",
+  "Alongside Variorum, I ship production features at Arken Systems. Before that I made key page loads meaningfully faster at RemoteFlow, built a multi-tenant EdTech platform at Baccalytics, and shipped a Spring Boot records system at Alabtaal Developers. I finished my BSCS at Air University in June 2026.",
 ];
 
 /** Site chrome and shared UI strings, kept here so copy lives in one file. */
@@ -314,7 +400,7 @@ export const ui = {
 
 /** Section mastheads and editorial framing copy (UI voice, not facts). */
 export const sections = {
-  work: { eyebrow: "Selected Work", title: "Recruitimate, and four more." },
+  work: { eyebrow: "Selected Work", title: "Variorum, and five more." },
   writing: {
     eyebrow: "Writing",
     title: "Notes from the build.",
@@ -331,4 +417,4 @@ export const sections = {
 
 /** Search/social description used by metadata across the site. */
 export const seoDescription =
-  "Muhammad Danish is a full-stack developer building AI-powered applications end to end with Next.js, TypeScript, FastAPI, PostgreSQL, and the Claude and Gemini APIs. Open to full-time roles and freelance projects.";
+  "Muhammad Danish is a full stack developer, indie hacker, and founder building developer-focused SaaS products. Founder of Variorum, an AI-powered engineering memory layer for GitHub repositories, and core engineer on Recruitimate. Open to full-time roles and freelance projects.";

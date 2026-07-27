@@ -13,7 +13,7 @@ import {
   Sun,
 } from "lucide-react";
 import { GitHubIcon, LinkedInIcon } from "@/components/icons";
-import { flagship, identity, ui, writing } from "@/content";
+import { identity, recruitimate, ui, variorum, writing } from "@/content";
 
 type CommandPaletteProps = {
   open: boolean;
@@ -78,7 +78,14 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
           ))}
           <Command.Item
             className={itemClass}
-            onSelect={() => run(() => router.push(flagship.caseStudyPath))}
+            onSelect={() => run(() => router.push(variorum.caseStudyPath))}
+          >
+            <FileText aria-hidden="true" />
+            Variorum case study
+          </Command.Item>
+          <Command.Item
+            className={itemClass}
+            onSelect={() => run(() => router.push(recruitimate.caseStudyPath))}
           >
             <FileText aria-hidden="true" />
             Recruitimate case study
@@ -115,6 +122,15 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
         </Command.Group>
 
         <Command.Group heading="Elsewhere" className={groupClass}>
+          <Command.Item
+            className={itemClass}
+            onSelect={() =>
+              run(() => window.open(variorum.links.live.href, "_blank", "noopener,noreferrer"))
+            }
+          >
+            <Hash aria-hidden="true" />
+            Variorum live site
+          </Command.Item>
           <Command.Item
             className={itemClass}
             onSelect={() => run(() => window.open(identity.github, "_blank", "noopener,noreferrer"))}
