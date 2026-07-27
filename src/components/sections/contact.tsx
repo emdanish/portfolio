@@ -15,7 +15,7 @@ export function Contact() {
           <div className="flex items-baseline justify-between gap-4">
             <Availability />
             <span aria-hidden="true" className="shrink-0 font-mono text-5xl text-line tabular-nums select-none">
-              05
+              06
             </span>
           </div>
           <h2 className="mt-6 max-w-3xl font-display text-display font-semibold text-balance text-ink">

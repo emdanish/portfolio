@@ -9,7 +9,7 @@ export function About() {
   return (
     <section id="about" className="scroll-mt-24 px-5 py-24 sm:py-32">
       <div className="mx-auto max-w-6xl">
-        <SectionHeading eyebrow={sections.about.eyebrow} title={sections.about.title} number="04" />
+        <SectionHeading eyebrow={sections.about.eyebrow} title={sections.about.title} number="05" />
         <div className="mt-16 grid gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-5">
             {/* Editorial art direction: 4:5 crop, thin ink border, offset amber frame. */}

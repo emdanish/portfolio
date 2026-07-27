@@ -23,6 +23,13 @@
 - Reduced key page load times by approximately 25% at RemoteFlow
 - Automation workflows save the team roughly 5 hours per week
 
+## Impact section counts (each verifiable from the projects listed below or the Zovo brief)
+
+- 1 SaaS product taken from idea to production solo (Variorum)
+- 6 products built and shipped to production (the six projects below)
+- 5 AI providers integrated across the products (Claude, Gemini, Mistral, DeepSeek, Perplexity)
+- 93 findings resolved with zero regressions hardening Zovo (16 test batches, from the Zovo brief)
+
 ## Projects (display order)
 
 ### 1. Variorum (flagship, founder project, gets the largest treatment on the site)

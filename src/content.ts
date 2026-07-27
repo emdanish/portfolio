@@ -36,17 +36,45 @@ export const identity = {
 } as const;
 
 /**
- * The Experience metric strip. Each real number appears at most twice on the
- * page and never twice in adjacent sections: the ~50% lives only in the
- * flagship spotlight and case study (its canonical home); ~25% here and in
- * the RemoteFlow role line; ~5 hrs only here. The project count is padded to
- * echo the section numerals and is countable from this very page.
+ * The Impact section: numeric tiles plus capability statements. Honesty
+ * rules: every count is verifiable from the projects on this page or from
+ * facts.md (the 93/16 figures come from the Zovo brief). Approved metrics
+ * NOT used here to avoid duplication or vagueness: ~50% lives only in the
+ * Recruitimate spotlight and case study; ~25% lives only in the RemoteFlow
+ * role line; ~5 hrs/week is approved but currently unused.
  */
-export const metrics = [
-  { value: 25, prefix: "~", suffix: "%", label: "reduction in key page load times at RemoteFlow" },
-  { value: 5, prefix: "~", suffix: " hrs", label: "saved weekly by automation workflows" },
-  { value: 6, prefix: "0", suffix: "", label: "production projects" },
-] as const;
+export const impact = {
+  stats: [
+    {
+      value: 1,
+      prefix: "0",
+      suffix: "",
+      label: "SaaS product taken from idea to production, solo: Variorum",
+    },
+    {
+      value: 6,
+      prefix: "0",
+      suffix: "",
+      label: "products built and shipped to production, all of them on this page",
+    },
+    {
+      value: 5,
+      prefix: "0",
+      suffix: "",
+      label: "AI providers integrated across them, with automatic fallback in Variorum",
+    },
+    {
+      value: 93,
+      prefix: "",
+      suffix: "",
+      label: "findings found and fixed hardening Zovo for production, with zero regressions",
+    },
+  ],
+  statements: [
+    "Variorum went from first commit to production with one person on it: me. Typed frontend, async Python backend, hybrid retrieval over embeddings, a real GitHub App, and the deployment.",
+    "The AI I ship is grounded. Variorum, Recruitimate, and the FYP generator all answer from retrieved evidence, with citations back to the source.",
+  ],
+} as const;
 
 /** Status line for the footer. Sources: Variorum, the Arken roles, and the essay. */
 export const currently =
@@ -403,6 +431,7 @@ export const ui = {
 /** Section mastheads and editorial framing copy (UI voice, not facts). */
 export const sections = {
   work: { eyebrow: "Selected Work", title: "Variorum, and five more." },
+  impact: { eyebrow: "Impact", title: "Proof of work." },
   writing: {
     eyebrow: "Writing",
     title: "Notes from the build.",

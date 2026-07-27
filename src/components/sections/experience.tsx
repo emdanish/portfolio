@@ -1,26 +1,12 @@
-import { CountUp } from "@/components/count-up";
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
-import { education, experience, metrics, sections } from "@/content";
+import { education, experience, sections } from "@/content";
 
 export function Experience() {
   return (
     <section id="experience" className="scroll-mt-24 px-5 py-24 sm:py-32">
       <div className="mx-auto max-w-6xl">
-        <SectionHeading eyebrow={sections.experience.eyebrow} title={sections.experience.title} number="03" />
-        {/* The three approved metrics, counting up once on first view. */}
-        <Reveal className="mt-14">
-          <ul role="list" className="grid list-none gap-x-8 gap-y-6 sm:grid-cols-3">
-            {metrics.map((metric) => (
-              <li key={metric.label} className="border-t border-line pt-4">
-                <p className="font-mono text-3xl text-ink">
-                  <CountUp value={metric.value} prefix={metric.prefix} suffix={metric.suffix} />
-                </p>
-                <p className="mt-1.5 max-w-xs text-sm text-pretty text-subtle">{metric.label}</p>
-              </li>
-            ))}
-          </ul>
-        </Reveal>
+        <SectionHeading eyebrow={sections.experience.eyebrow} title={sections.experience.title} number="04" />
         <ol role="list" className="mt-16 list-none">
           {experience.map((role, i) => (
             <li key={`${role.company}-${role.period}`} className="border-t border-line last:border-b">
