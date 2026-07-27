@@ -366,10 +366,25 @@ export type SkillGroup = { label: string; items: readonly string[] };
 
 /** facts.md: keep grouped and visually quiet, no percentage bars ever. */
 export const skillGroups: readonly SkillGroup[] = [
-  { label: "Frontend", items: ["Next.js", "React", "TypeScript", "Tailwind CSS"] },
+  {
+    label: "Frontend",
+    items: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "shadcn/ui", "Recharts"],
+  },
   {
     label: "Backend",
-    items: ["Node.js", "Express.js", "FastAPI (Python)", "REST", "GraphQL", "WebSockets", "LiveKit"],
+    items: [
+      "Node.js",
+      "Express.js",
+      "FastAPI (Python)",
+      "REST",
+      "GraphQL",
+      "WebSockets",
+      "LiveKit",
+      "SQLAlchemy",
+      "Alembic",
+      "Pydantic",
+      "tree-sitter",
+    ],
   },
   {
     label: "AI",
@@ -377,18 +392,28 @@ export const skillGroups: readonly SkillGroup[] = [
       "Claude API",
       "Gemini API",
       "Mistral AI",
+      "DeepSeek",
+      "Perplexity Sonar",
       "AssemblyAI",
       "CORE Research API",
       "RAG",
+      "Embeddings",
       "Prompt engineering",
       "Streaming",
     ],
   },
   {
     label: "Data",
-    items: ["PostgreSQL", "MongoDB", "MySQL", "MariaDB", "Supabase", "Appwrite", "pgvector"],
+    items: ["PostgreSQL", "MongoDB", "MySQL", "MariaDB", "Supabase", "Appwrite", "pgvector", "Full-text search"],
   },
-  { label: "Practices", items: ["Git", "Docker", "CI/CD", "Vercel", "Code review", "Testing"] },
+  {
+    label: "Integrations",
+    items: ["GitHub App", "OAuth", "Webhooks", "HMAC verification", "Slack"],
+  },
+  {
+    label: "Practices",
+    items: ["Git", "Docker", "docker-compose", "CI/CD", "Vercel", "pytest", "mypy", "Ruff", "Code review"],
+  },
 ];
 
 export type Testimonial = { quote: string; name: string; role: string };

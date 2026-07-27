@@ -34,7 +34,7 @@ export function About() {
         </div>
         <Reveal className="mt-20">
           <h3 className="font-mono text-xs text-subtle uppercase">What I work with</h3>
-          <dl className="mt-6 grid gap-x-8 gap-y-6 border-t border-line pt-6 sm:grid-cols-2 lg:grid-cols-5">
+          <dl className="mt-6 grid gap-x-8 gap-y-6 border-t border-line pt-6 sm:grid-cols-2 lg:grid-cols-3">
             {skillGroups.map((group) => (
               <div key={group.label}>
                 <dt className="font-display text-lg text-ink">{group.label}</dt>
