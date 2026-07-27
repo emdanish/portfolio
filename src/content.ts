@@ -148,8 +148,10 @@ export const variorum = {
     source: { label: "Source code", href: "https://github.com/emdanish/variorum" },
   },
   caseStudyPath: "/variorum",
-  /** Cover image slot; wired in once the user provides the file. */
-  image: null as { src: string; alt: string } | null,
+  image: {
+    src: "/images/projects/variorum.png",
+    alt: "Editorial illustration for Variorum, the engineering memory layer for GitHub: an archival card catalog with open drawers, amber threads arcing from filed cards to citation tags pinned on an open ledger, a branching commit tree rising behind.",
+  } as { src: string; alt: string } | null,
 } as const;
 
 export const recruitimate = {
