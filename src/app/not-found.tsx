@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Page not found",
   // Do not inherit the homepage canonical: a 404 has no preferred URL.
   alternates: { canonical: null },
+  robots: { index: false, follow: true },
 };
 
 export default function NotFound() {

@@ -1,5 +1,6 @@
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
+import { JsonLd } from "@/components/json-ld";
 import { Hero } from "@/components/sections/hero";
 import { Work } from "@/components/sections/work";
 import { Impact } from "@/components/sections/impact";
@@ -8,19 +9,7 @@ import { Experience } from "@/components/sections/experience";
 import { About } from "@/components/sections/about";
 import { Testimonials } from "@/components/sections/testimonials";
 import { Contact } from "@/components/sections/contact";
-import { identity } from "@/content";
-import { SITE_URL } from "@/lib/site";
-
-const personSchema = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: identity.name,
-  jobTitle: identity.role,
-  email: `mailto:${identity.email}`,
-  url: SITE_URL,
-  sameAs: [identity.github, identity.linkedin],
-  address: { "@type": "PostalAddress", addressCountry: "PK" },
-};
+import { homeJsonLd } from "@/lib/json-ld";
 
 export default function HomePage() {
   return (
@@ -37,11 +26,7 @@ export default function HomePage() {
         <Contact />
       </main>
       <SiteFooter />
-      <script
-        type="application/ld+json"
-        // Static, build-time content from src/content.ts; nothing user-generated.
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
-      />
+      <JsonLd data={homeJsonLd()} />
     </div>
   );
 }

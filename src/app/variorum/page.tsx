@@ -6,23 +6,40 @@ import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { ExternalLink } from "@/components/external-link";
 import { EyebrowRule } from "@/components/eyebrow-rule";
+import { JsonLd } from "@/components/json-ld";
 import { Reveal } from "@/components/reveal";
 import { identity, variorum } from "@/content";
-import { SITE_URL } from "@/lib/site";
+import { variorumJsonLd } from "@/lib/json-ld";
+import { absoluteUrl } from "@/lib/site";
+
+const title = "Variorum — AI Engineering Memory Layer for GitHub";
+const description =
+  "Case study: Muhammad Danish built Variorum, an AI-powered engineering memory layer for GitHub repositories using Next.js, TypeScript, FastAPI, and PostgreSQL—cited answers, change-risk analysis, and docs that fix themselves.";
 
 export const metadata: Metadata = {
-  title: "Variorum Case Study",
-  description:
-    "Variorum is an AI-powered engineering memory layer for GitHub repositories, built by Muhammad Danish. The decisions, history, and reasoning around your code, preserved and queryable.",
+  title,
+  description,
   alternates: { canonical: "/variorum" },
   openGraph: {
     type: "article",
-    url: `${SITE_URL}/variorum`,
+    url: absoluteUrl("/variorum"),
     siteName: identity.name,
-    title: "Variorum Case Study",
-    description:
-      "An AI-powered engineering memory layer for GitHub repositories: cited answers, change-risk analysis, and docs that fix themselves.",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: `Portfolio of ${identity.name}` }],
+    title,
+    description,
+    images: [
+      {
+        url: variorum.image?.src ?? "/og.png",
+        width: 1920,
+        height: 1080,
+        alt: variorum.image?.alt ?? `${variorum.title} case study`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: [variorum.image?.src ?? "/og.png"],
   },
 };
 
@@ -185,11 +202,23 @@ export default function VariorumCaseStudy() {
                   <span className="sr-only"> of {variorum.title}</span>
                 </ExternalLink>
               </div>
+              <p className="mt-8 text-sm text-pretty text-subtle">
+                Built and founded by{" "}
+                <Link href="/" className="link-underline text-ink">
+                  {identity.name}
+                </Link>
+                , full stack developer. See also{" "}
+                <Link href="/recruitimate" className="link-underline text-ink">
+                  the Recruitimate case study
+                </Link>
+                .
+              </p>
             </section>
           </Reveal>
         </article>
       </main>
       <SiteFooter />
+      <JsonLd data={variorumJsonLd()} />
     </div>
   );
 }

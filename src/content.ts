@@ -24,10 +24,10 @@ export const identity = {
   email: "muhammadd03@gmail.com",
   github: "https://github.com/emdanish",
   linkedin: "https://www.linkedin.com/in/emdanish",
-  /** Portfolio this site replaces; used only as canonical-domain fallback. */
+  /** Legacy Vercel URL kept for redirects / historical reference only. */
   previousSite: "https://emdanish.vercel.app",
-  /** facts.md: new domain not purchased; deploy URL is decided at deploy time. */
-  domain: null as string | null,
+  /** Canonical production domain. */
+  domain: "https://emdanish.dev",
   cv: {
     /** Served from /public, copied from the repo-root PDF. */
     path: "/Muhammad-Danish-CV.pdf",
@@ -432,9 +432,9 @@ export const testimonials: readonly Testimonial[] = [];
  * free of sentences that also appear in the Selected Work section.
  */
 export const about: readonly string[] = [
-  "I'm Muhammad Danish, a full stack developer and indie hacker in Pakistan. I build developer-focused SaaS products whole, from schema and API design through prompt pipelines and streaming interfaces to the deploy that ships them. Variorum, my engineering memory layer for GitHub repositories, is where all of that comes together; I'm its founder and builder.",
+  "I'm Muhammad Danish, a full stack developer and indie hacker in Pakistan. I design and ship developer-focused SaaS end to end: schema and API design, prompt pipelines, streaming interfaces, and the deploy. Variorum, my AI-powered engineering memory layer for GitHub repositories (Next.js, TypeScript, FastAPI, PostgreSQL), is where that stack comes together; I'm its founder and builder.",
   "The part I care about most is deciding what a product should refuse to do. Recruitimate scores candidates only on what they say in the transcript, never on their face or voice, in step with the EU AI Act. Variorum reviews, explains, and opens pull requests, but merging stays a human decision. I wrote about this thinking, and I keep drawing the same line.",
-  "Alongside Variorum, I ship production features at Arken Systems. Before that I made key page loads meaningfully faster at RemoteFlow, built a multi-tenant EdTech platform at Baccalytics, and shipped a Spring Boot records system at Alabtaal Developers. I finished my BSCS at Air University in June 2026.",
+  "Alongside Variorum, I ship production AI-integrated features at Arken Systems across React, Next.js, TypeScript, Node.js, Python, and PostgreSQL. Before that I made key page loads meaningfully faster at RemoteFlow, built a multi-tenant EdTech platform at Baccalytics, and shipped a Spring Boot records system at Alabtaal Developers. I finished my BSCS at Air University in June 2026.",
 ];
 
 /** Site chrome and shared UI strings, kept here so copy lives in one file. */
@@ -473,4 +473,7 @@ export const sections = {
 
 /** Search/social description used by metadata across the site. */
 export const seoDescription =
-  "Muhammad Danish is a full stack developer, indie hacker, and founder building developer-focused SaaS products. Founder of Variorum, an AI-powered engineering memory layer for GitHub repositories, and core engineer on Recruitimate. Open to full-time roles and freelance projects.";
+  "Muhammad Danish is a full stack developer and founder in Pakistan building AI-powered SaaS products with Next.js, TypeScript, Python, and FastAPI. Founder of Variorum, an engineering memory layer for GitHub, and core engineer on Recruitimate. Open to full-time roles and freelance projects.";
+
+/** Slightly longer social/OG framing when a page does not override description. */
+export const seoTitle = `${identity.name} · Full Stack Developer · AI Products`;

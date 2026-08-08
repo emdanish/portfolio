@@ -3,7 +3,7 @@ import { Fraunces, JetBrains_Mono, Schibsted_Grotesk } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "@/components/theme-provider";
-import { identity, seoDescription } from "@/content";
+import { identity, seoDescription, seoTitle } from "@/content";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
@@ -26,26 +26,67 @@ const jetbrains = JetBrains_Mono({
   display: "swap",
 });
 
-const siteTitle = `${identity.name} · ${identity.role}`;
-
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: siteTitle,
+    default: seoTitle,
     template: `%s · ${identity.name}`,
   },
   description: seoDescription,
+  applicationName: `${identity.name} Portfolio`,
+  authors: [{ name: identity.name, url: SITE_URL }],
+  creator: identity.name,
+  publisher: identity.name,
+  category: "technology",
+  keywords: [
+    "Muhammad Danish",
+    "full stack developer",
+    "full stack engineer",
+    "software engineer Pakistan",
+    "Next.js developer",
+    "TypeScript developer",
+    "Python FastAPI",
+    "AI engineer",
+    "AI SaaS",
+    "Variorum",
+    "Recruitimate",
+    "emdanish",
+  ],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
     type: "website",
-    url: `${SITE_URL}/`,
+    locale: "en_US",
+    url: SITE_URL,
     siteName: identity.name,
-    title: siteTitle,
+    title: seoTitle,
     description: seoDescription,
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: `Portfolio of ${identity.name}` }],
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: `${identity.name} — full stack developer building AI-powered SaaS products`,
+      },
+    ],
   },
-  // Card-only: each page's twitter title/description/image autofill from its
-  // own resolved Open Graph, so /recruitimate doesn't inherit homepage copy.
-  twitter: { card: "summary_large_image" },
+  // Card-only defaults: page-level twitter title/description/image resolve
+  // from each page's Open Graph so case studies keep their own previews.
+  twitter: {
+    card: "summary_large_image",
+    title: seoTitle,
+    description: seoDescription,
+    images: ["/og.png"],
+  },
   icons: {
     // favicon.ico is injected automatically from src/app/favicon.ico.
     icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
@@ -53,6 +94,9 @@ export const metadata: Metadata = {
   },
   manifest: "/site.webmanifest",
   alternates: { canonical: "/" },
+  other: {
+    "theme-color": "#faf8f5",
+  },
 };
 
 export const viewport: Viewport = {
@@ -60,6 +104,8 @@ export const viewport: Viewport = {
   // chrome color must not follow the OS scheme; the toggle updates this meta
   // tag client-side (see theme-toggle.tsx).
   themeColor: "#faf8f5",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

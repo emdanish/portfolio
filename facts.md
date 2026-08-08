@@ -13,7 +13,7 @@
 - GitHub: https://github.com/emdanish
 - LinkedIn: https://www.linkedin.com/in/emdanish
 - Current portfolio being replaced: https://emdanish.vercel.app
-- New domain if purchased, otherwise leave blank: not purchased
+- Production domain: https://emdanish.dev
 - Profile photo: the editorial crop at src/images/portrait-about.jpg (derived from the original natural-background photo, which is kept out of the repo)
 - CV: served from public/Muhammad-Danish-CV.pdf (linked for download as "Download CV")
 

@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
@@ -113,14 +114,14 @@ export function SiteNav() {
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-paper pr-[max(--spacing(5),env(safe-area-inset-right))] pl-[max(--spacing(5),env(safe-area-inset-left))]">
       <nav aria-label="Main" className="mx-auto flex h-16 max-w-6xl items-center justify-between">
-        <a
-          href="#top"
+        <Link
+          href="/"
           onClick={() => setMenuOpen(false)}
           className="inline-flex shrink-0 items-center transition-opacity hover:opacity-80 motion-reduce:transition-none"
         >
           <Monogram />
-          <span className="sr-only">{identity.name}, back to top</span>
-        </a>
+          <span className="sr-only">{identity.name}, portfolio home</span>
+        </Link>
 
         <ul role="list" className="hidden items-center gap-7 md:flex">
           {ui.nav.map((item) => {

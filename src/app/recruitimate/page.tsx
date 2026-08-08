@@ -5,23 +5,42 @@ import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { ExternalLink } from "@/components/external-link";
 import { EyebrowRule } from "@/components/eyebrow-rule";
+import { JsonLd } from "@/components/json-ld";
 import { OutcomeStat } from "@/components/outcome-stat";
 import { Reveal } from "@/components/reveal";
 import { StackTags } from "@/components/stack-tags";
 import { recruitimate, identity, writing } from "@/content";
-import { SITE_URL } from "@/lib/site";
+import { recruitimateJsonLd } from "@/lib/json-ld";
+import { absoluteUrl } from "@/lib/site";
+
+const title = "Recruitimate — AI Hiring Platform Case Study";
+const description =
+  "Case study: Muhammad Danish, core engineer on Recruitimate—an AI-native hiring platform with transcript-only scoring, resume screening on pgvector, and real-time interviews over LiveKit (Next.js, TypeScript, FastAPI, PostgreSQL).";
 
 export const metadata: Metadata = {
-  title: "Recruitimate Case Study",
-  description: recruitimate.oneLiner,
+  title,
+  description,
   alternates: { canonical: "/recruitimate" },
   openGraph: {
     type: "article",
-    url: `${SITE_URL}/recruitimate`,
+    url: absoluteUrl("/recruitimate"),
     siteName: identity.name,
-    title: "Recruitimate Case Study",
-    description: recruitimate.oneLiner,
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: `Portfolio of ${identity.name}` }],
+    title,
+    description,
+    images: [
+      {
+        url: recruitimate.image.src,
+        width: 1920,
+        height: 1080,
+        alt: recruitimate.image.alt,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: [recruitimate.image.src],
   },
 };
 
@@ -150,11 +169,23 @@ export default function RecruitimateCaseStudy() {
               </h2>
               <EyebrowRule>Stack</EyebrowRule>
               <StackTags items={recruitimate.stack} className="mt-6 text-sm leading-relaxed" />
+              <p className="mt-10 text-sm text-pretty text-subtle">
+                Engineering by{" "}
+                <Link href="/" className="link-underline text-ink">
+                  {identity.name}
+                </Link>
+                {" at Arken Systems. Related work: "}
+                <Link href="/variorum" className="link-underline text-ink">
+                  Variorum case study
+                </Link>
+                .
+              </p>
             </section>
           </Reveal>
         </article>
       </main>
       <SiteFooter />
+      <JsonLd data={recruitimateJsonLd()} />
     </div>
   );
 }
